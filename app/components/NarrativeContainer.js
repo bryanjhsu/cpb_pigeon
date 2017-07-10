@@ -1,7 +1,5 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-var Dialogue = require('./Dialogue.js')
-
 
 class NarrativeContainer extends React.Component {
 

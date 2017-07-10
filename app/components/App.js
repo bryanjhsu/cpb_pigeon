@@ -1,11 +1,11 @@
 var React = require('react');
-var MessageContainer = require('./MessageContainer');
+var NarrativeContainer = require('./NarrativeContainer');
 
 class App extends React.Component {
   render() {
     return (
       <div className='container'>
-        <MessageContainer />
+        <NarrativeContainer />
       </div>
     )
   }
