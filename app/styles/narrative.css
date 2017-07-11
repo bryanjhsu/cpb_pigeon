@@ -1,11 +1,5 @@
 
 
-.container1 {
-  padding: 5px;
-  width: 100%;
-  margin: 20px auto;
-}
-
 .wrapper {
     margin-left:auto;
     margin-right:auto;
@@ -28,25 +22,20 @@
 .messageLeft {
   float:left;
   clear:left;
-  background: #fff;
-  border: 1px solid #999;
-  
   height: 10%;
   padding: 0;
-  width: 50%; 
+  width: 60%; 
+  background: #FECCCC;
 }
 
 
 .messageRight {
   float:right;
-    clear:right;
-  background: #fff;
-  border: 1px solid #999;
-  font-size: 15px;
-  line-height: 20px;
+  clear:right;
   height: 10%;
   padding: 0;
-  width: 50%; 
+  width: 60%; 
+  background: #CCE0FE;
 }
 /*
 .headerContainer {
@@ -56,18 +45,13 @@
 }*/
 
 .narrativeContainer {
-
   overflow-y: auto;
   position: relative;
   vertical-align: bottom;
-  background: #fff;
-  border: 1px solid #999;
   float: left;
-  padding: 0;
   text-align: center;
   width: 100%;
   height: 550px;
-
 }
 /*
 .messagesContainer {

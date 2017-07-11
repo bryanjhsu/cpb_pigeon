@@ -11,19 +11,19 @@ class App extends React.Component {
 		</header>
 
         <section id='left'>
-        	TEST INFO CONTAINER
+        	INFO CONTAINER
 
         </section>
         
 
         <div id='middle'>
-        TEST NARRATIVE
+        NARRATIVE
         	<NarrativeContainer/>
 
         </div>
 
         <section id='right'>
-        TEST FEEDBACK CONTAINER
+        FEEDBACK CONTAINER
 
         </section>
 
