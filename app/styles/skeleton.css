@@ -1,0 +1,134 @@
+/* STRUCTURE */
+body {
+  font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif;
+    font: 14px "Century Gothic", Futura, sans-serif;
+  margin: 20px;
+}
+
+ol, ul {
+  padding-left: 30px;
+}
+
+#content {
+	padding: 5px;
+	width: 95%;
+	margin: 1px auto;
+	height: auto;
+	overflow: hidden;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+}
+
+header {
+	height: 70px;
+	padding: 0 15px;
+}
+#left {
+	width: 25%;
+	float: left;
+	padding: 5px 15px;
+	height: 90%;
+}
+
+#middle {
+	width: 40%; /* Account for margins + border values */
+	float: left;
+	padding: 5px 15px;
+	margin: 0px 5px 5px 5px;
+	height: 90%;
+}
+
+#right {
+	width: 25%;
+	padding: 5px 15px;
+	float: left;
+	height: 90%;
+}
+footer {
+	clear: both;
+	padding: 0 15px;
+}
+
+/************************************************************************************
+MEDIA QUERIES
+*************************************************************************************/
+/* for 980px or less */
+/*@media screen and (max-width: 980px) {
+	
+	#content {
+		width: 94%;
+	}
+	#left {
+		width: 41%;
+		padding: 1% 4%;
+	}
+	#middle {
+		width: 41%;
+		padding: 1% 4%;
+		margin: 0px 0px 5px 5px;
+		float: right;
+	}
+	
+	#right {
+		clear: both;
+		padding: 1% 4%;
+		width: auto;
+		float: none;
+	}
+
+	header, footer {
+		padding: 1% 4%;
+	}
+}*/
+
+/* for 700px or less */
+/*@media screen and (max-width: 600px) {
+
+	#left {
+		width: auto;
+		float: none;
+	}
+	
+	#middle {
+		width: auto;
+		float: none;
+		margin-left: 0px;
+	}
+	
+	#right {
+		width: auto;
+		float: none;
+	}
+
+}*/
+
+/* for 480px or less */
+/*@media screen and (max-width: 480px) {
+
+	header {
+		height: auto;
+	}
+	h1 {
+		font-size: 2em;
+	}
+	#right {
+		display: none;
+	}
+
+}*/
+
+
+#left {
+	background: #f8f8f8;
+}
+#right {
+	background: #f0efef;
+}
+header, #left, #middle, #right {
+	margin-bottom: 5px;
+}
+
+#content, header, #left, #middle, #right, footer {
+	border: solid 1px #ccc;
+}

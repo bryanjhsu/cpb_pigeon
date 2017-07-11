@@ -65,7 +65,7 @@ class NarrativeContainer extends React.Component {
           } 
           while(currMessage != null);  
           return (
-            <div className='messagesContainer'>{msgs}</div>
+            <div className='messagesContainer' ref= 'messagesContainer'>{msgs}</div>
           );
       }
     }
@@ -165,14 +165,12 @@ class NarrativeContainer extends React.Component {
     return(
       //after turning md into ll, go through ll and turn to messages
       <div className = 'wrapper'>
-        <div className='headerContainer'>
-          {this.renderHeader()}
+        
+        <div className='narrativeContainer' ref='narrativeContainer' onKeyDown={this.handleKeyPress}>
+            {this.renderMessages()}
         </div>
         <div className='uploadContainer'>
           {this.renderButtons()}
-        </div>
-        <div className='narrativeContainer' ref='narrativeContainer' onKeyDown={this.handleKeyPress}>
-            {this.renderMessages()}
         </div>
       </div>
     );
