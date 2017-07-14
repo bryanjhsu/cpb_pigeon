@@ -21,7 +21,7 @@ I want a medium hand tossed pepperoni pizza.
 I also want a pizza with lots of crust. About 80% crust and 20% pizza. That's the kind of crusty za I like.
 
 # bot
-I'm building a medisum hand tossed pizza with pepperoni and an 80% crust pizza, the kind of za that you like.
+I'm building a medium hand tossed pizza with pepperoni and an 80% crust pizza, the kind of za that you like.
 
 Would you like any more toppings on your pizza?
 

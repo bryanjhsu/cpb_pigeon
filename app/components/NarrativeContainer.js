@@ -61,12 +61,15 @@ class NarrativeContainer extends React.Component {
       else
       {
           var currMessage = msgs.curr;
+          currMessage.isFocused = true;
           var msgs = [];
           do
           {
-              var mDiv = new MessageDiv(currMessage);
+              var mDiv = new MessageDiv(currMessage, msgs.length);
               msgs.unshift(mDiv);
               currMessage = currMessage.previous;
+              if(currMessage)
+                currMessage.isFocused = false;
           } 
           while(currMessage != null);  
           return (
@@ -194,17 +197,27 @@ class NarrativeContainer extends React.Component {
   }
 }
 
-function MessageDiv(msg) {
-  var user = msg.user;
-  var data = msg.data;
+function MessageDiv(msg, key) {
+  let user = msg.user;
+  let data = msg.data;
+  let isFocused = msg.isFocused;
+
       return (
-    <div className = "message" id = {(user === "bot") ? 'messageLeft' : 'messageRight'}>
+    <div className = "message" key = {key} id = {(user === "bot") ? 'messageLeft' : 'messageRight'}>
       <img className = "messageImg" id = {(user === "bot") ? 'messageImgLeft' : 'messageImgRight'}/>
-      <div className = "messageContent" id = {(user === "bot") ? 'messageContentLeft' : 'messageContentRight'}>
+      <div className = {"messageContent" + (isFocused ? " messageFocused" : "")}
+            id = {(user === "bot") ? 'messageContentLeft' : 'messageContentRight'}
+            onClick = {handleMessageClick}>
         <p>{data}</p>
       </div>
     </div>
   );
+}
+
+function handleMessageClick()
+{
+
+  console.log("CLICKY");
 }
 
 module.exports = NarrativeContainer;
@@ -258,6 +271,7 @@ function Message(data, user) {
     this.user = user;
     this.previous = null;
     this.next = null;
+    this.isFocused = false;
 }
 
 Message.prototype.print = function()
@@ -286,6 +300,7 @@ function MessageList() {
     this.head = null;
     this.curr = null;
     this.tail = null;
+    this.focusedKey = null;
 
     this.currSpeaker = "";
     this.title = "";
