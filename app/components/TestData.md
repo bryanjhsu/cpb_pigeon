@@ -2,29 +2,29 @@ title - Chatbot Interaction Intro
 ================
 
 # bot
-hi i'm a bot what's your name
+You can tell me waht you'd like to order, or I can tell you about our menu.
+
+What would you like?
 
 # user
-hi i'm bryan
+I want the $5.99 Mix & Match offer.
 
 # bot
-hi brian
+Okay, I've added that coupon to your order.
 
-i am here to help you
+What would you like?
 
 # user
 
-my name is actually bryan
+I want a medium hand tossed pepperoni pizza.
 
-please call me that from now on
+I also want a pizza with lots of crust. About 80% crust and 20% pizza. That's the kind of crusty za I like.
 
 # bot
-wow that's very interesting
+I'm building a medisum hand tossed pizza with pepperoni and an 80% crust pizza, the kind of za that you like.
 
-i am here to help you brian
-
-:)
+Would you like any more toppings on your pizza?
 
 # user
 
-:(
+No thanks bot.

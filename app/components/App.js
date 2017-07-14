@@ -1,29 +1,30 @@
 var React = require('react');
+
 var NarrativeContainer = require('./NarrativeContainer');
+var InfoContainer = require('./InfoContainer');
+var FeedbackContainer = require('./FeedbackContainer');
+var HeaderContainer = require('./HeaderContainer');
+
 
 class App extends React.Component {
   render() {
     return (
       <div id = 'content' className='container'>
 
-      	<header>
-			<h1>CHATBOT PROTOTYPER</h1>
-		</header>
+      	<HeaderContainer/>
 
+        
         <section id='left'>
-        	INFO CONTAINER
-
+        	<InfoContainer />
         </section>
         
 
         <div id='middle'>
-        NARRATIVE
         	<NarrativeContainer/>
-
         </div>
 
         <section id='right'>
-        FEEDBACK CONTAINER
+          <FeedbackContainer/>
 
         </section>
 

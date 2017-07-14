@@ -11,7 +11,13 @@ module.exports = {
     rules: [
       { test: /\.(js)$/, use: 'babel-loader' },
       { test: /\.css$/, use: [ 'style-loader', 'css-loader' ]}
-    ]
+    ],
+    loaders: [
+    {
+      test: /\.(png|jpg)$/,
+      loader: 'url?limit=25000'
+    }
+  ]
   },
   plugins: [
     new HtmlWebpackPlugin({

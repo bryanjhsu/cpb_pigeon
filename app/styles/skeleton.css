@@ -1,25 +1,28 @@
 /* STRUCTURE */
 body {
-  font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif;
-    font: 14px "Century Gothic", Futura, sans-serif;
+	font-family: 'Roboto', sans-serif;
+  font: 14px;
   /*margin: 20px;*/
 }
 
 ol, ul {
-  padding-left: 30px;
+  list-style-type: none;
+  padding-left: 0;
 }
 
 #content {
-	width: 95%;
-	height: auto;
+	width: 100%;
+	height: 760px;
 	overflow: hidden;
-	position: absolute;
+	position: relative;
+	margin: 0px;
 	top: 0;
 	bottom: 0;
+	text-align:center;
 }
 
 header {
-	text-align: center;
+	text-align: left ;
 	height: 70px;
 }
 #left {
@@ -30,14 +33,14 @@ header {
 
 #middle {
 	width: 45%; /* Account for margins + border values */
-	float: left;
-	margin: auto;
 	height: 90%;
+	display: inline-block;
 }
 
 #right {
 	width: 25%;
 	float: right;
+	display: inline-block;
 	height: 90%;
 }
 
@@ -108,18 +111,10 @@ MEDIA QUERIES
 	}
 
 }*/
-
-
-#left {
-	background: #f8f8f8;
-}
-#right {
+#right, #left {
 	background: #f0efef;
 }
 header, #left, #middle, #right {
 	margin-bottom: 5px;
-}
-
-#content, header, #left, #middle, #right, footer {
-	border: solid 1px #ccc;
+	padding: 2px;
 }

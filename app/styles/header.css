@@ -1,0 +1,48 @@
+.header
+{
+	height:auto;
+	padding: 0;
+	text-align: left;
+	margin-bottom: 5px;
+}
+#topHeader
+{
+	clear:both;
+	height: auto;
+	color: #FFFFFF;
+	font-weight: normal;
+	background: #222222;
+
+	/*text-align: center;*/
+}
+
+#bottomHeader
+{
+	clear: both;
+	height:auto;
+	margin-left: 8px;
+	margin-top: 3px;
+	margin-bottom: 4px;
+}
+
+.pageHeader
+{
+	font-size: 18px;
+	padding: 0px;
+	margin: 0px;
+}
+
+#hermy{
+	margin-left: 5px;
+	height: 30px;
+}
+
+#app_title
+{
+	font-size: 20px;
+	display: inline-block;
+		position: absolute;
+		margin-left: 2px;
+		margin-top: 3px;
+	
+}

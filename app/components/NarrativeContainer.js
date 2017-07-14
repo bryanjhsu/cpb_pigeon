@@ -1,5 +1,10 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
+// var ReactBootstrap = require('react-bootstrap');
+
+import { Button } from 'react-bootstrap';
+import { ButtonToolbar } from 'react-bootstrap';
+
 
 class NarrativeContainer extends React.Component {
 
@@ -65,7 +70,7 @@ class NarrativeContainer extends React.Component {
           } 
           while(currMessage != null);  
           return (
-            <div className='messagesContainer' ref= 'messagesContainer'>{msgs}</div>
+            <div className='messagesContainer' ref='messagesContainer'>{msgs}</div>
           );
       }
     }
@@ -74,15 +79,22 @@ class NarrativeContainer extends React.Component {
   renderButtons()
   {
     return(
-      <div>
+      <div className = "buttonNav">
+ 
+        <Button className = "button" bsStyle="primary" bsSize="small" 
+        id = "previousBtn" onClick={this.prevMessageEvent}>Previous</Button>
+
+        <Button className = "button" bsStyle="primary" bsSize="small" 
+        onClick={this.nextMessageEvent}>Next</Button>
+
+        <Button className = "button" bsStyle="primary" bsSize="small" 
+        onClick={this.allMessagesEvent}>Show All</Button>
+
       <form action="/action_page.php">
         <input type="file" name="markdown" onChange={this.onUploadMarkdown}>
         </input>
       </form>
-      <button className="next round" onClick={this.restartEvent}>&lt;&lt;</button>
-      <button className="next round" onClick={this.prevMessageEvent}>&lt;</button>
-      <button className="next round" onClick={this.nextMessageEvent}>&gt;</button>
-      <button className="next round" onClick={this.allMessagesEvent}>&gt;&gt;</button>
+
       </div>
     );
   }
@@ -141,7 +153,8 @@ class NarrativeContainer extends React.Component {
   //scroll to bottom of messages
   updateScroll()
   {
-    var element = this.refs.narrativeContainer;
+    var element = this.refs.messagesContainer;
+    if(element)
     element.scrollTop = element.scrollHeight;
   }
 
@@ -185,8 +198,11 @@ function MessageDiv(msg) {
   var user = msg.user;
   var data = msg.data;
       return (
-    <div className = {(user === "bot") ? 'messageLeft' : 'messageRight'}>
-      <p>{user+":"} <br /> {data}</p>
+    <div className = "message" id = {(user === "bot") ? 'messageLeft' : 'messageRight'}>
+      <img className = "messageImg" id = {(user === "bot") ? 'messageImgLeft' : 'messageImgRight'}/>
+      <div className = "messageContent" id = {(user === "bot") ? 'messageContentLeft' : 'messageContentRight'}>
+        <p>{data}</p>
+      </div>
     </div>
   );
 }

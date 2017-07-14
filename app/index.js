@@ -1,8 +1,9 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-
 require('./styles/narrative.css');
+require('./styles/info.css');
 require('./styles/skeleton.css');
+require('./styles/header.css');
 
 var App = require('./components/App');
 

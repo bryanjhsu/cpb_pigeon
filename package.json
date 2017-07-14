@@ -27,7 +27,8 @@
   },
   "dependencies": {
     "babel-preset-es2015": "^6.24.1",
-    "react": "^16.0.0-alpha.5",
-    "react-dom": "^16.0.0-alpha.5"
+    "react": "^16.0.0-alpha.13",
+    "react-bootstrap": "^0.31.1",
+    "react-dom": "^16.0.0-alpha.13"
   }
 }
