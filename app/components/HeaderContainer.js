@@ -27,6 +27,8 @@ class HeaderContainer extends React.Component {
       	<div className = 'pageHeader' id = "bottomHeader">
       	 	HOME > PATH > ETC > TEST NAVIGATION
       	 </div>
+
+      	 <hr/>
       </div>
     );
   }

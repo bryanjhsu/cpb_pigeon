@@ -75,7 +75,7 @@ class InfoContainer extends React.Component {
 	        	<h1 className = "titleSmall">
 	        	Admin
 	        	</h1>
-	        	button
+
 		    </div>
 
         </div>

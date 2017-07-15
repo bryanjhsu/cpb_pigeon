@@ -4,6 +4,7 @@ require('./styles/narrative.css');
 require('./styles/info.css');
 require('./styles/skeleton.css');
 require('./styles/header.css');
+require('./styles/feedback.css');
 
 var App = require('./components/App');
 

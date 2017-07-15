@@ -3,7 +3,7 @@
 	height:auto;
 	padding: 0;
 	text-align: left;
-	margin-bottom: 5px;
+
 }
 #topHeader
 {
@@ -12,8 +12,6 @@
 	color: #FFFFFF;
 	font-weight: normal;
 	background: #222222;
-	height:50px;
-
 }
 
 #bottomHeader
@@ -22,7 +20,7 @@
 	height:auto;
 	margin-left: 8px;
 	margin-top: 3px;
-	margin-bottom: 4px;
+
 }
 
 .pageHeader

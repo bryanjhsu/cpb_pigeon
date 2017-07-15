@@ -2,7 +2,7 @@ title - Chatbot Interaction Intro
 ================
 
 # bot
-You can tell me waht you'd like to order, or I can tell you about our menu.
+You can tell me what you'd like to order, or I can tell you about our menu.
 
 What would you like?
 
