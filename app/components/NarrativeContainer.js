@@ -11,11 +11,11 @@ class NarrativeContainer extends React.Component {
   constructor() {
     super();
     this.state = {
-      messageList: null
+      messageList: null,
+      currentHighlighted: null
     };
 
     this.onUploadMarkdown = this.onUploadMarkdown.bind(this);
-
     this.nextMessageEvent = this.nextMessageEvent.bind(this);
     this.restartEvent = this.restartEvent.bind(this);
     this.prevMessageEvent = this.prevMessageEvent.bind(this);
@@ -61,6 +61,7 @@ class NarrativeContainer extends React.Component {
       else
       {
           var currMessage = msgs.curr;
+          console.log(currMessage.key);
           currMessage.isFocused = true;
           var msgs = [];
           do
@@ -104,7 +105,7 @@ class NarrativeContainer extends React.Component {
 
   restartEvent()
   {
-    if(this.state.messageList != null)
+    if(this.state.messageList)
     {
         this.state.messageList.curr = this.state.messageList.head;
     }
@@ -113,15 +114,11 @@ class NarrativeContainer extends React.Component {
 
   nextMessageEvent()
   {
-    if(this.state.messageList != null)
+    if(this.state.messageList)
     {
-      if(this.state.messageList.curr.next != null)
+      if(this.state.messageList.curr.next)
       {
         this.state.messageList.curr = this.state.messageList.curr.next;
-      }
-      else
-      {
-
       }
     }
 
@@ -130,15 +127,11 @@ class NarrativeContainer extends React.Component {
 
   prevMessageEvent()
   {
-    if(this.state.messageList != null)
+    if(this.state.messageList)
     {
-      if(this.state.messageList.curr.previous != null)
+      if(this.state.messageList.curr.previous)
       {
         this.state.messageList.curr = this.state.messageList.curr.previous;
-      }
-      else
-      {
-
       }
     }
     this.setState(this.state);
@@ -146,7 +139,7 @@ class NarrativeContainer extends React.Component {
 
   allMessagesEvent()
   {
-    if(this.state.messageList != null)
+    if(this.state.messageList)
     {
         this.state.messageList.curr = this.state.messageList.tail;
     }
@@ -161,15 +154,9 @@ class NarrativeContainer extends React.Component {
     element.scrollTop = element.scrollHeight;
   }
 
-  renderHeader()
-  {
-    return(
-      <p>Narrative</p>
-      );
-  }
 
-
-   handleKeyPress(event){
+   handleKeyPress(event)
+   {
     console.log(event.key);
     if(event.key == 'Enter'){
       console.log('enter press here! ')
@@ -181,7 +168,6 @@ class NarrativeContainer extends React.Component {
     return(
       //after turning md into ll, go through ll and turn to messages
       <div className = 'wrapper'>
-        
         <div className='narrativeContainer' ref='narrativeContainer' onKeyDown={this.handleKeyPress}>
             {this.renderMessages()}
         </div>
@@ -216,7 +202,6 @@ function MessageDiv(msg, key) {
 
 function handleMessageClick()
 {
-
   console.log("CLICKY");
 }
 
@@ -262,7 +247,6 @@ function parseMarkdownToDialogue(file)
     }
   }
   return messageList;
-
 }
 
 //from who should be name or id?
@@ -300,7 +284,6 @@ function MessageList() {
     this.head = null;
     this.curr = null;
     this.tail = null;
-    this.focusedKey = null;
 
     this.currSpeaker = "";
     this.title = "";

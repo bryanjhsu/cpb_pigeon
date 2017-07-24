@@ -40,6 +40,16 @@
 
 }
 
+#topHeader
+{
+	font-size: 18px;
+}
+
+#bottomHeader
+{
+	font-size: 17px;
+}
+
 .describeText{
 	color: #808080;
 	font-size: 13px;
@@ -49,6 +59,12 @@
 
 hr{
 	border-top: 1px solid #8c8b8b;
+	padding: 0;
+}
+
+hr.headerSeparator
+{
+	margin: 0px;
 }
 
 #shareBtn
@@ -57,7 +73,7 @@ hr{
 	margin-top: 1px;
 }
 
-.info
+.infoBtns
 {
 	margin-left: 0;
 }

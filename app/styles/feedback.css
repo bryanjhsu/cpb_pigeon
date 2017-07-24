@@ -1,5 +1,65 @@
+#commentContainer
+{
+	text-align: left;
+	margin: 5px;
+	background: #FFFFFF;
+	padding:10px;
+	margin-bottom: 30px;
+
+}
+
 #commentsContainer
 {
 	text-align: left;
-	margin: 10px;
+	margin: 15px;
+}
+
+#comments
+{
+	margin:20px;
+	height: 400px;
+	overflow: scroll;
+}
+
+.commentName
+{
+	margin-left: 5px;
+	font-size: 13px;
+	font-style: bold;
+}
+
+.navFeedback
+{
+
+}
+
+.commentImg
+{
+	width: 20px;
+	content: url("/public/assets/misc/user3.png");
+}
+
+.commentContent
+{
+	font-size: 15px;
+}
+
+#commentsTop
+{
+
+}
+
+
+.nav-tabs > li >a {
+	text-align: center;
+	width: 150px;
+	/*color: #FFFFFF;*/
+  	/*background: #0079ad;*/
+}
+
+.nav-tabs > li > a:hover {
+	text-align: center;
+	width: 150px;
+	/*color: #FFFFFF;
+  	background: #0079ad;*/
 }

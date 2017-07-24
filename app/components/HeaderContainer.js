@@ -20,15 +20,15 @@ class HeaderContainer extends React.Component {
       <div className = 'header'>
       	<div className = 'pageHeader' id = "topHeader" > 
       		<img id="hermy" src = "/public/assets/misc/hermy.png" />
-      		<p id="app_title"> C H A T T E R B O T</p>
+      		<p id="app_title"> P I G E O N</p>
       		
       	</div>
 
       	<div className = 'pageHeader' id = "bottomHeader">
-      	 	HOME > PATH > ETC > TEST NAVIGATION
+      	 	HOME > DOMINO'S > COUPONS: LOYALTY > LOYALTY A.1 HAPPY PATH
       	 </div>
 
-      	 <hr/>
+      	 <hr className = 'headerSeparator'/>
       </div>
     );
   }

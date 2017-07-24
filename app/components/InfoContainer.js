@@ -47,15 +47,15 @@ class InfoContainer extends React.Component {
 		        	</h1>
 			    <div className="describeText" id = "infoDescribe"> 
 				   	 <ul id="infoList">
-					  <li>Last Updated: </li>
-					  <li>Last Updated by: </li>
+					  <li>Last Updated: 7/1/2017</li>
+					  <li>Last Updated by: Bryan Hsu</li>
 					  <li><br/></li>
-					  <li>Last Comment: </li>
-					  <li>Last Comment by: </li>
+					  <li>Last Comment: 7/2/2017</li>
+					  <li>Last Comment by: Dana Buckhorn</li>
 					  <li><br/></li>
 					  <li>Approval Status: Pending </li>
-					  <li>Approved on:  </li>
-					  <li>Approved by: </li>
+					  <li>Approved on:  7/1/2017</li>
+					  <li>Approved by: Steph Langan</li>
 					</ul>
 					<div id = "infoBtns">
 						<Button id = "approveBtn" className = "button info" bsStyle="primary" bsSize="small">
@@ -73,8 +73,10 @@ class InfoContainer extends React.Component {
 
 	        <div id = "adminContainer">
 	        	<h1 className = "titleSmall">
-	        	Admin
+	        	ADMIN
 	        	</h1>
+
+	        	Buttons
 
 		    </div>
 
