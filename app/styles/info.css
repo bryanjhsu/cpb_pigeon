@@ -2,6 +2,7 @@
 {
 	text-align: left;
 	margin: 10px;
+	padding: 10px;
 }
 
 .title
@@ -67,13 +68,44 @@ hr.headerSeparator
 	margin: 0px;
 }
 
+.userImg
+{
+	margin-left: 2px;
+	margin-right: 2px;
+}
+
 #shareBtn
 {
 	margin-left: 20px;
 	margin-top: 1px;
 }
 
-.infoBtns
+#shareIcon
 {
-	margin-left: 0;
+	margin-left: 5px;
+	margin-bottom: 3px;
+}
+
+#infoBtns
+{
+	color: #808080;
+	margin-left: -15px;
+	font-size: 10px;
+	display: inline-block;
+}
+
+#adminContainer
+{
+	position: absolute;
+	bottom:50px;
+}
+
+.adminBtn
+{
+	margin: 15px;
+}
+
+.adminIcon
+{
+	margin-left: 4px;
 }

@@ -32,8 +32,9 @@ class InfoContainer extends React.Component {
 		        	<h1 className = "title">
 		        	A.1 HAPPY PATH
 		        	</h1>
-		        	<Button id = "shareBtn" className = "button" bsStyle="primary" bsSize="small">
+		        	<Button id = "shareBtn" className = "button btnHover" bsStyle="primary" bsSize="small">
 		        	Share
+		        	<img id = "shareIcon" src="/public/assets/icons/share.png" width="12" /> 
 	       			 </Button>
        			 </div>
 		        <div className="describeText" id = "scenarioDescribe">
@@ -48,21 +49,27 @@ class InfoContainer extends React.Component {
 			    <div className="describeText" id = "infoDescribe"> 
 				   	 <ul id="infoList">
 					  <li>Last Updated: 7/1/2017</li>
-					  <li>Last Updated by: Bryan Hsu</li>
+					  <li>Last Updated by: 
+					  <img className = "userImg" src="/public/assets/misc/user1.png" width="20"/>
+					  Bryan Hsu </li>
 					  <li><br/></li>
 					  <li>Last Comment: 7/2/2017</li>
-					  <li>Last Comment by: Dana Buckhorn</li>
+					  <li>Last Comment by: 
+					  <img className = "userImg" src="/public/assets/misc/user2.png" width="20"/>
+					  Dana Buckhorn</li>
 					  <li><br/></li>
 					  <li>Approval Status: Pending </li>
 					  <li>Approved on:  7/1/2017</li>
-					  <li>Approved by: Steph Langan</li>
+					  <li>Approved by: 
+					  <img className = "userImg" src="/public/assets/misc/user4.png" width="20"/>
+					  Emma Davis</li>
 					</ul>
 					<div id = "infoBtns">
-						<Button id = "approveBtn" className = "button info" bsStyle="primary" bsSize="small">
+						<Button id = "approveBtn" className = "button btnHover info" bsStyle="primary" bsSize="small">
 			        	Approve Scenario
 		       			 </Button>
 
-		       			 <Button id = "exportBtn" className = "button info" bsStyle="primary" bsSize="small">
+		       			 <Button id = "exportBtn" className = "button btnHover info" bsStyle="primary" bsSize="small">
 			        	Export File
 		       			 </Button>
 
@@ -76,8 +83,24 @@ class InfoContainer extends React.Component {
 	        	ADMIN
 	        	</h1>
 
-	        	Buttons
+	        	<div id = "infoBtns">
+					<span className ="adminBtn btnHover">
+						Upload New File
+						<img className = "adminIcon" src="/public/assets/icons/upload.png" width="8" /> 
+					</span>
 
+					<span className ="adminBtn btnHover">
+						New Scenario
+						<img className = "adminIcon" src="/public/assets/icons/new.png" width="8" /> 
+					</span>
+
+					<span className ="adminBtn btnHover">
+						Delete Scenario
+						<img className = "adminIcon" src="/public/assets/icons/delete.png" width="8" /> 
+					</span>
+					
+
+	       		</div>
 		    </div>
 
         </div>

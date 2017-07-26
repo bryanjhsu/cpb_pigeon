@@ -61,20 +61,32 @@ class NarrativeContainer extends React.Component {
       else
       {
           var currMessage = msgs.curr;
-          console.log(currMessage.key);
-          currMessage.isFocused = true;
           var msgs = [];
           do
           {
-              var mDiv = new MessageDiv(currMessage, msgs.length);
-              msgs.unshift(mDiv);
-              currMessage = currMessage.previous;
-              if(currMessage)
-                currMessage.isFocused = false;
+            msgs.unshift(currMessage);
+            currMessage = currMessage.previous;
+            if(currMessage)
+              currMessage.isFocused = false;
           } 
           while(currMessage != null);  
+
+          console.log(msgs);
+
+          const messageDivs = msgs.map((msg, index) => 
+            <MessageDiv
+                  user={msg.user} 
+                  data={msg.data}
+                  isFocused={false}
+                  key={index}
+                  /> 
+            ); 
           return (
-            <div className='messagesContainer' ref='messagesContainer'>{msgs}</div>
+            <div className='messagesContainer' ref='messagesContainer'>
+              {
+                messageDivs
+              }
+            </div>
           );
       }
     }
@@ -85,13 +97,13 @@ class NarrativeContainer extends React.Component {
     return(
       <div className = "buttonNav">
  
-        <Button className = "button" bsStyle="primary" bsSize="small" 
+        <Button className = "button btnHover" bsStyle="primary" bsSize="small" 
         id = "previousBtn" onClick={this.prevMessageEvent}>Previous</Button>
 
-        <Button className = "button" bsStyle="primary" bsSize="small" 
+        <Button className = "button btnHover" bsStyle="primary" bsSize="small" 
         onClick={this.nextMessageEvent}>Next</Button>
 
-        <Button className = "button" bsStyle="primary" bsSize="small" 
+        <Button className = "button btnHover" bsStyle="primary" bsSize="small" 
         onClick={this.allMessagesEvent}>Show All</Button>
 
       <form action="/action_page.php">
@@ -183,21 +195,51 @@ class NarrativeContainer extends React.Component {
   }
 }
 
-function MessageDiv(msg, key) {
-  let user = msg.user;
-  let data = msg.data;
-  let isFocused = msg.isFocused;
+class MessageDiv extends React.Component
+{
+  constructor(props)
+  {
+    super(props);
+    this.state = 
+    {
+      user: props.user,
+      data: props.data,
+      isFocused: props.isFocused
+    }
 
-      return (
-    <div className = "message" key = {key} id = {(user === "bot") ? 'messageLeft' : 'messageRight'}>
-      <img className = "messageImg" id = {(user === "bot") ? 'messageImgLeft' : 'messageImgRight'}/>
-      <div className = {"messageContent" + (isFocused ? " messageFocused" : "")}
-            id = {(user === "bot") ? 'messageContentLeft' : 'messageContentRight'}
-            onClick = {handleMessageClick}>
-        <p>{data}</p>
-      </div>
-    </div>
-  );
+    this.handleMessageClick = this.handleMessageClick.bind(this);
+  }
+
+  handleMessageClick()
+  {
+    // console.log("CLICKY");
+    if(!this.state.isFocused)
+    {
+      this.setState({isFocused: true});
+    }
+    else
+    {
+      this.setState({isFocused: false});
+    }
+  }
+
+  render() {
+
+    console.log("STATE")
+        console.log(this.state);
+
+    return(
+        <div className = "message" key = {this.state.key} id = {(this.state.user === "bot") ? 'messageLeft' : 'messageRight'}>
+          <img className = "messageImg" id = {(this.state.user === "bot") ? 'messageImgLeft' : 'messageImgRight'}/>
+          <div className = {"messageContent" + (this.state.isFocused ? " messageFocused" : "")}
+                id = {(this.state.user === "bot") ? 'messageContentLeft' : 'messageContentRight'}
+                onClick = {this.handleMessageClick}>
+            <p>{this.state.data}</p>
+          </div>
+        </div>
+      );
+
+  }
 }
 
 function handleMessageClick()
@@ -206,6 +248,7 @@ function handleMessageClick()
 }
 
 module.exports = NarrativeContainer;
+// module.exports = MessageDiv;
 
 function parseMarkdownToDialogue(file)
 {
@@ -276,7 +319,7 @@ Message.prototype.print = function()
     {
         msg = this.user + ": " + this.data;
     }
-    console.log(msg); 
+    // console.log(msg); 
 }
 
 function MessageList() {

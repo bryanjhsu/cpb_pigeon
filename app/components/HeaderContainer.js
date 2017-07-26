@@ -25,7 +25,9 @@ class HeaderContainer extends React.Component {
       	</div>
 
       	<div className = 'pageHeader' id = "bottomHeader">
-      	 	HOME > DOMINO'S > COUPONS: LOYALTY > LOYALTY A.1 HAPPY PATH
+      	 	HOME >
+      	 	<img id="brand_logo" src = "/public/assets/dominos/logo_dominos.png" width="20" />
+      	 	DOMINO'S > COUPONS: LOYALTY > LOYALTY A.1 HAPPY PATH
       	 </div>
 
       	 <hr className = 'headerSeparator'/>

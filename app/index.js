@@ -6,6 +6,8 @@ require('./styles/skeleton.css');
 require('./styles/header.css');
 require('./styles/feedback.css');
 
+require('./styles/button.css');
+
 var App = require('./components/App');
 
 ReactDOM.render(
