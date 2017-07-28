@@ -5,6 +5,25 @@
 	padding: 10px;
 }
 
+.adminBtn > input
+{
+    display: none;
+    cursor: pointer;
+}
+
+#file-input
+{
+	display:none;
+
+}
+
+label
+{
+	cursor: pointer;
+}
+
+
+
 .title
 {
 	color: #0079ad;
@@ -22,7 +41,7 @@
 
 #scenarioContainer
 {
-
+	height: ;
 }
 
 #scenarioDescribe
@@ -54,7 +73,7 @@
 .describeText{
 	color: #808080;
 	font-size: 13px;
-
+	margin-top: 5px;
 	text-align: left;
 }
 

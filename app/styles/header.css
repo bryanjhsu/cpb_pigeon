@@ -36,6 +36,20 @@
 	height: 30px;
 }
 
+#headerButtons
+{
+	float: right;
+	text-align: right;
+}
+
+.headerButton
+{
+	height: 17px;
+	margin-left: 10px;
+	margin-right: 10px;
+	cursor: pointer;
+}
+
 #app_title
 {
 	font-size: 19px;

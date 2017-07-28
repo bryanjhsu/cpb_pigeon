@@ -1,94 +1,100 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-// var ReactBootstrap = require('react-bootstrap');
+import { Button, ButtonToolbar } from 'react-bootstrap';
 
-import { Button } from 'react-bootstrap';
-import { ButtonToolbar } from 'react-bootstrap';
 
 
 class NarrativeContainer extends React.Component {
 
-  constructor() {
+  constructor(props) {
     super();
     this.state = {
-      messageList: null,
-      currentHighlighted: null
+      messageList: props.dialogue,
+      highlightedIndex: null
     };
 
-    this.onUploadMarkdown = this.onUploadMarkdown.bind(this);
+    this.renderMessages = this.renderMessages.bind(this);
+
+    //controls narrative playback
     this.nextMessageEvent = this.nextMessageEvent.bind(this);
     this.restartEvent = this.restartEvent.bind(this);
     this.prevMessageEvent = this.prevMessageEvent.bind(this);
     this.allMessagesEvent = this.allMessagesEvent.bind(this);
+
+   this.updateMessageHighlightedIndex = this.updateMessageHighlightedIndex.bind(this);
   }
 
-  onUploadMarkdown(event)
+  componentWillReceiveProps(newProps)
   {
-    var file = event.target.files[0];
-    console.log(file);
+    this.setState({messageList:newProps.dialogue});
+  }
 
-    var reader = new FileReader();
 
-    function updateMessagelist(dialogue)
-    {
-      this.state.messageList = dialogue;
-      console.log(this.state.messageList);
-      this.setState(this.state);
-    }
-
-    updateMessagelist = updateMessagelist.bind(this);
-    reader.onload = function(e) {
-        var file = this.result;
-
-        var dialogue = parseMarkdownToDialogue(file);
-        dialogue.print();
-        updateMessagelist(dialogue);
-
-    }
-    var text = reader.readAsText(file);
+  updateMessageHighlightedIndex(index)
+  {
+    this.setState({highlightedIndex: index});
   }
 
   renderMessages()
   {
-    var msgs = this.state.messageList;
+    let msgList = this.state.messageList;
+    let msgs = [];
+    let isLastMessage = false;
 
-    if(msgs!=null)
+    if(msgList!=null)
     {
-      if(msgs._length == 0)
-      {
-        console.log("NULL");
+      let currMessage;
+      if(msgList.curr.next != null){
+        currMessage = msgList.curr.next;
       }
-      else
-      {
-          var currMessage = msgs.curr;
-          var msgs = [];
-          do
-          {
-            msgs.unshift(currMessage);
-            currMessage = currMessage.previous;
-            if(currMessage)
-              currMessage.isFocused = false;
-          } 
-          while(currMessage != null);  
-
-          console.log(msgs);
-
-          const messageDivs = msgs.map((msg, index) => 
-            <MessageDiv
-                  user={msg.user} 
-                  data={msg.data}
-                  isFocused={false}
-                  key={index}
-                  /> 
-            ); 
-          return (
-            <div className='messagesContainer' ref='messagesContainer'>
-              {
-                messageDivs
-              }
-            </div>
-          );
+      else{
+        currMessage = msgList.curr;
+        isLastMessage = true;
       }
+
+      //get current message, and work way backwards to oldest message
+      if(currMessage != null)
+      {
+        while(currMessage.previous != null)
+        {
+          msgs.unshift(currMessage);
+
+          currMessage = currMessage.previous;
+        }  
+      }
+
+      //set current message as highlighted if message navigation is used
+      //otherwise, highlighted message determined by click
+      if(this.state.highlightedIndex < 0 || msgs.length == 1)
+      {
+        if(isLastMessage)
+        {
+            this.state.highlightedIndex = msgs.length - 1;
+        }
+        else
+        {
+          this.state.highlightedIndex = msgs.length - 2;
+        }
+      }
+
+      const messageDivs = msgs.map((msg, index) => 
+        <MessageDiv
+              user={msg.user} 
+              data={msg.data}
+              isFocused={this.state.highlightedIndex === index}
+              index={index}
+              indexCallback = {this.updateMessageHighlightedIndex}
+              /> 
+        );
+
+      return (
+        <div className='messagesContainer' ref='messagesContainer'>
+          {messageDivs}
+          {(isLastMessage) ? (<div id = "emptyDiv" className="emptyMsg"> end of conversation </div>):<div/>}
+        </div>
+      );
+         
+
     }
   }
 
@@ -96,6 +102,9 @@ class NarrativeContainer extends React.Component {
   {
     return(
       <div className = "buttonNav">
+
+        <Button className = "button btnHover" bsStyle="primary" bsSize="small" 
+        onClick={this.restartEvent}>Restart</Button>
  
         <Button className = "button btnHover" bsStyle="primary" bsSize="small" 
         id = "previousBtn" onClick={this.prevMessageEvent}>Previous</Button>
@@ -105,11 +114,6 @@ class NarrativeContainer extends React.Component {
 
         <Button className = "button btnHover" bsStyle="primary" bsSize="small" 
         onClick={this.allMessagesEvent}>Show All</Button>
-
-      <form action="/action_page.php">
-        <input type="file" name="markdown" onChange={this.onUploadMarkdown}>
-        </input>
-      </form>
 
       </div>
     );
@@ -121,7 +125,9 @@ class NarrativeContainer extends React.Component {
     {
         this.state.messageList.curr = this.state.messageList.head;
     }
+    this.state.highlightedIndex = -1
     this.setState(this.state);
+    this.updateScroll();
   }
 
   nextMessageEvent()
@@ -131,10 +137,12 @@ class NarrativeContainer extends React.Component {
       if(this.state.messageList.curr.next)
       {
         this.state.messageList.curr = this.state.messageList.curr.next;
+        console.log(this.state.messageList.curr);
       }
     }
-
+    this.state.highlightedIndex = -1
     this.setState(this.state);
+    this.updateScroll();
   }
 
   prevMessageEvent()
@@ -146,7 +154,9 @@ class NarrativeContainer extends React.Component {
         this.state.messageList.curr = this.state.messageList.curr.previous;
       }
     }
+    this.state.highlightedIndex = -1
     this.setState(this.state);
+    this.updateScroll();
   }
 
   allMessagesEvent()
@@ -155,7 +165,9 @@ class NarrativeContainer extends React.Component {
     {
         this.state.messageList.curr = this.state.messageList.tail;
     }
+    this.state.highlightedIndex = -1
     this.setState(this.state);
+    this.updateScroll();
   }
 
   //scroll to bottom of messages
@@ -165,7 +177,6 @@ class NarrativeContainer extends React.Component {
     if(element)
     element.scrollTop = element.scrollHeight;
   }
-
 
    handleKeyPress(event)
    {
@@ -178,9 +189,9 @@ class NarrativeContainer extends React.Component {
   render() {   
     var msgs = this.state.messageList;
     return(
-      //after turning md into ll, go through ll and turn to messages
       <div className = 'wrapper'>
         <div className='narrativeContainer' ref='narrativeContainer' onKeyDown={this.handleKeyPress}>
+            {this.state.messageList == null ? <p id="emptyUpload"> Please upload a markdown file with the "Upload New File" button in the bottom left.</p>: <p/>}
             {this.renderMessages()}
         </div>
         <div className='uploadContainer'>
@@ -191,7 +202,11 @@ class NarrativeContainer extends React.Component {
   }
 
   componentDidUpdate(){
-    this.updateScroll();
+    //only scroll down if highlightd is at bottemest spot
+    if(this.state.messageList && this.state.highlightedIndex === this.state.messageList._length - 2)
+    {
+      this.updateScroll();
+    }
   }
 }
 
@@ -202,6 +217,7 @@ class MessageDiv extends React.Component
     super(props);
     this.state = 
     {
+      index: props.index,
       user: props.user,
       data: props.data,
       isFocused: props.isFocused
@@ -210,24 +226,17 @@ class MessageDiv extends React.Component
     this.handleMessageClick = this.handleMessageClick.bind(this);
   }
 
+  componentWillReceiveProps(newProps)
+  {
+    this.setState({isFocused:newProps.isFocused});
+  }
+
   handleMessageClick()
   {
-    // console.log("CLICKY");
-    if(!this.state.isFocused)
-    {
-      this.setState({isFocused: true});
-    }
-    else
-    {
-      this.setState({isFocused: false});
-    }
+    this.props.indexCallback(this.state.index);
   }
 
   render() {
-
-    console.log("STATE")
-        console.log(this.state);
-
     return(
         <div className = "message" key = {this.state.key} id = {(this.state.user === "bot") ? 'messageLeft' : 'messageRight'}>
           <img className = "messageImg" id = {(this.state.user === "bot") ? 'messageImgLeft' : 'messageImgRight'}/>
@@ -242,132 +251,4 @@ class MessageDiv extends React.Component
   }
 }
 
-function handleMessageClick()
-{
-  console.log("CLICKY");
-}
-
 module.exports = NarrativeContainer;
-// module.exports = MessageDiv;
-
-function parseMarkdownToDialogue(file)
-{
-  //creates a new dialogue (MessageList Object)
-  //read first line and first instance of =
-  //this sets the title
-  //look for ## to find user
-
-  //anything after user is message from that user
-  //if no hashtag found again, anything after is 
-  ///a new message from same user
-  var messageList = new MessageList();
-  var lines = file.split('\n');
-  var title = "";
-  var currUser = "";
-
-  for (var line = 0; line < lines.length; line++) {
-
-    var currLine = lines[line];
-
-    if(line == 0)
-    {
-      messageList.title = currLine;
-    }
-    else if(currLine.charAt(0) === "=")
-    {
-      //
-    }
-    else
-    {
-      if(currLine.substring(0,2) === "# ")//user
-      {
-        currUser = currLine.substring(2);
-      } 
-      else if(currLine)
-      {
-        messageList.add(currLine, currUser);
-      }
-    }
-  }
-  return messageList;
-}
-
-//from who should be name or id?
-function Message(data, user) {
-    this.data = data;
-    this.user = user;
-    this.previous = null;
-    this.next = null;
-    this.isFocused = false;
-}
-
-Message.prototype.print = function()
-{
-    var msg = "";
-    if(this.previous != null)
-    {
-        if(this.previous.user === this.user)
-        {
-            msg = " "+this.data;
-        }
-        else
-        {
-            msg = this.user + ": " + this.data;
-        }
-    }
-    else
-    {
-        msg = this.user + ": " + this.data;
-    }
-    // console.log(msg); 
-}
-
-function MessageList() {
-    this._length = 0;
-    this.head = null;
-    this.curr = null;
-    this.tail = null;
-
-    this.currSpeaker = "";
-    this.title = "";
-}
- 
-MessageList.prototype.add = function(value, user) {
-    var msg = new Message(value, user);
- 
-    if (this._length) {
-        this.tail.next = msg;
-        msg.previous = this.tail;
-        this.tail = msg;
-    } else {
-        this.head = msg;
-        this.curr = msg;
-        this.tail = msg;
-    }
-
-    this._length++;
- 
-    return msg;
-};
-
-MessageList.prototype.print = function() {
-
-    console.log(this.title);
-
-    if(this._length == 0)
-    {
-        return "this dialogue is empty";
-    }
-    else
-    {
-        var currMessage = this.head;
-        do
-        {
-            currMessage.print();
-            currMessage = currMessage.next;
-        } 
-        while(currMessage != null);
-        
-    }
- 
-};

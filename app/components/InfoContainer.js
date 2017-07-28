@@ -1,8 +1,8 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 
-import { Button } from 'react-bootstrap';
-import { ButtonToolbar } from 'react-bootstrap';
+import { Button, ButtonToolbar } from 'react-bootstrap';
+import ReactTooltip from 'react-tooltip'
 
 class InfoContainer extends React.Component {
 
@@ -11,6 +11,39 @@ class InfoContainer extends React.Component {
     this.state = {
       
     };
+
+    this.onUploadMarkdown = this.onUploadMarkdown.bind(this);
+
+  }
+
+  onUploadMarkdown(event)
+  {
+    var file = event.target.files[0];
+
+    var reader = new FileReader();
+
+
+    function sendDialogueToParent(dialogue)
+    {
+       this.props.uploadCallback(dialogue)
+    }
+    sendDialogueToParent = sendDialogueToParent.bind(this);
+
+    reader.onload = function(e) {
+        var file = this.result;
+
+        var dialogue = parseMarkdownToDialogue(file);
+        //send dialogue to parent
+        sendDialogueToParent(dialogue);
+
+    }
+    var text = reader.readAsText(file);
+  }
+
+  uploadFile(){
+  	let dialogue;
+  	//file select -> turn markdown to dialogue var
+  	this.props.uploadCallback(dialogue)
   }
 
   render() {   
@@ -32,10 +65,13 @@ class InfoContainer extends React.Component {
 		        	<h1 className = "title">
 		        	A.1 HAPPY PATH
 		        	</h1>
-		        	<Button id = "shareBtn" className = "button btnHover" bsStyle="primary" bsSize="small">
+		        	<Button data-tip data-for='shareTip'id = "shareBtn" className = "button btnHover" bsStyle="primary" bsSize="small">
 		        	Share
 		        	<img id = "shareIcon" src="/public/assets/icons/share.png" width="12" /> 
 	       			 </Button>
+	       			 <ReactTooltip id='shareTip' place='right' effect='solid' type='info'>
+					  <span>Click this button to share this narrative with someone. </span>
+					</ReactTooltip>
        			 </div>
 		        <div className="describeText" id = "scenarioDescribe">
 		        {describeText}<br/><br/>{describeText2}
@@ -65,13 +101,21 @@ class InfoContainer extends React.Component {
 					  Emma Davis</li>
 					</ul>
 					<div id = "infoBtns">
-						<Button id = "approveBtn" className = "button btnHover info" bsStyle="primary" bsSize="small">
+						<Button data-tip data-for='newTip' id = "approveBtn" className = "button btnHover info" bsStyle="primary" bsSize="small">
 			        	Approve Scenario
 		       			 </Button>
 
-		       			 <Button id = "exportBtn" className = "button btnHover info" bsStyle="primary" bsSize="small">
+		       			  <ReactTooltip id='newTip' place='bottom' effect='solid' type='info'>
+						  <span>Click this button to officially approve this scenario for production. </span>
+						</ReactTooltip>
+
+		       			 <Button data-tip data-for='exportTip' id = "exportBtn" className = "button btnHover info" bsStyle="primary" bsSize="small">
 			        	Export File
 		       			 </Button>
+
+		       			 <ReactTooltip id='exportTip' place='right' effect='solid' type='info'>
+						  <span>Click this button to share this narrative with someone. </span>
+						</ReactTooltip>
 
 	       			 </div>
 	        </div>
@@ -84,11 +128,15 @@ class InfoContainer extends React.Component {
 	        	</h1>
 
 	        	<div id = "infoBtns">
-					<span className ="adminBtn btnHover">
-						Upload New File
-						<img className = "adminIcon" src="/public/assets/icons/upload.png" width="8" /> 
-					</span>
-
+	        		
+						<span className ="adminBtn btnHover">
+						<label id="uploadLabel" htmlFor="file-input">
+							Upload New File
+							<img className = "adminIcon" src="/public/assets/icons/upload.png" width="8" /> 
+							<input id="file-input" type="file" onChange={this.onUploadMarkdown}/>
+						</label>
+						</span>
+					
 					<span className ="adminBtn btnHover">
 						New Scenario
 						<img className = "adminIcon" src="/public/assets/icons/new.png" width="8" /> 
@@ -109,6 +157,48 @@ class InfoContainer extends React.Component {
       </div>
     );
   }
+}
+
+function parseMarkdownToDialogue(file)
+{
+  //creates a new dialogue (MessageList Object)
+  //read first line and first instance of =
+  //this sets the title
+  //look for ## to find user
+
+  //anything after user is message from that user
+  //if no hashtag found again, anything after is 
+  ///a new message from same user
+  var messageList = new MessageList();
+  var lines = file.split('\n');
+  var title = "";
+  var currUser = "";
+
+  for (var line = 0; line < lines.length; line++) {
+
+    var currLine = lines[line];
+
+    if(line == 0)
+    {
+      messageList.title = currLine;
+    }
+    else if(currLine.charAt(0) === "=")
+    {
+      //
+    }
+    else
+    {
+      if(currLine.substring(0,2) === "# ")//user
+      {
+        currUser = currLine.substring(2);
+      } 
+      else if(currLine)
+      {
+        messageList.add(currLine, currUser);
+      }
+    }
+  }
+  return messageList;
 }
 
 module.exports = InfoContainer;

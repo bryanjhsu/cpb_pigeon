@@ -22,12 +22,15 @@
     -o-transition: .15s ease-in-out;
     cursor: pointer;
 }
+#shareBtn
+{
+}
 
 .button,
 .button:hover,
 .button:active,
 .button:focus {
-  margin: 12px;
+  margin:12px;
   background: #e21936;
   opacity: 0.8;
   border: none;
@@ -89,3 +92,5 @@
 {
     cursor: pointer;
 }
+
+
