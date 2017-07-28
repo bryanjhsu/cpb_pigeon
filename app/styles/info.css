@@ -26,7 +26,7 @@ label
 
 .title
 {
-	color: #0079ad;
+	color: var(--primary);;
 	font-size: 22px;
 	font-weight: bold;
 	display: inline-block;
@@ -34,7 +34,7 @@ label
 
 .titleSmall
 {
-	color: #0079ad;
+	color: var(--primary);
 	font-size: 14px;
 	font-weight: bold;
 }

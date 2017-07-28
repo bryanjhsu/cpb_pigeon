@@ -6,13 +6,6 @@ import { PageHeader } from 'react-bootstrap';
 
 class HeaderContainer extends React.Component {
 
-  constructor() {
-    super();
-    this.state = {
-      
-    };
-  }
-
   render() {   
 
     return(

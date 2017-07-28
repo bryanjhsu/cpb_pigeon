@@ -103,12 +103,12 @@
 
 #messageContentLeft
 {
-  background: #CCE0FE;
+  background: var(--primary-fade);
 }
 
 #messageContentRight
 {
-  background: #FECCCC;
+  background: var(--secondary-fade);
 }
 
 .messageImg {

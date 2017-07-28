@@ -1,3 +1,10 @@
+:root {
+    --primary:#0079ad;
+    --primary-fade:#CCE0FE;
+    --secondary:#e21936;
+    --secondary-fade:#FECCCC;
+}
+
 /* STRUCTURE */
 body {
 	font-family: 'Roboto', sans-serif;

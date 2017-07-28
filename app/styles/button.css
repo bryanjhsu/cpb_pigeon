@@ -31,7 +31,7 @@
 .button:active,
 .button:focus {
   margin:12px;
-  background: #e21936;
+  background: var(--secondary);;
   opacity: 0.8;
   border: none;
   min-width: 100px;
@@ -46,7 +46,7 @@
 .navbutton:active,
 .navbutton:focus {
   margin: 12px;
-  background: #e21936;
+  background: var(--primary);
   opacity: 0.8;
   border: none;
   min-width: 100px;
@@ -62,7 +62,7 @@
 .resolveBtn:active,
 .resolveBtn:focus {
   margin: 12px;
-  background: #0079ad;
+  background: var(--primary);;
   opacity: 0.8;
   border: none;
   min-width: 100px;

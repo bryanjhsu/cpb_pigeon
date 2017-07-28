@@ -80,12 +80,12 @@
 
 .nav-tabs > li.active:last-child>a
 {
-	background: #0079ad;
+	background: var(--primary);
 	color: #FFFFFF;
 }
 .nav-tabs > li.active:first-child>a
 {
-	background: #e21936;
+	background: var(--secondary);
 	color: #FFFFFF;
 }
 
@@ -98,37 +98,6 @@
 {
 	position: relative;
 	margin-top: 15px;
-}
-
-.resolveBtn,
-.resolveBtn:hover,
-.resolveBtn:active,
-.resolveBtn:focus {
-  margin: 12px;
-  background: #0079ad;
-  opacity: 0.8;
-  border: none;
-  min-width: 100px;
-  position: absolute;
-  right: -5px;
-  bottom: -15px;
-  display: inline-block;
-}
-
-.resolvedBtn,
-.resolvedBtn:hover,
-.resolvedBtn:active,
-.resolvedBtn:focus {
-	color:#777777;
-  margin: 12px;
-  background: #efefef;
-  opacity: 0.8;
-  border: none;
-  min-width: 100px;
-  position: absolute;
-  right: -5px;
-  bottom: -15px;
-  display: inline-block;
 }
 
 .nav-tabs {

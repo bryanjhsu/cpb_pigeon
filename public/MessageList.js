@@ -72,8 +72,49 @@ MessageList.prototype.print = function() {
             currMessage.print();
             currMessage = currMessage.next;
         } 
-        while(currMessage != null);
-        
+        while(currMessage != null);   
     }
- 
 };
+
+
+function parseMarkdownToDialogue(file)
+{
+  //creates a new dialogue (MessageList Object)
+  //read first line and first instance of =
+  //this sets the title
+  //look for ## to find user
+
+  //anything after user is message from that user
+  //if no hashtag found again, anything after is 
+  ///a new message from same user
+  var messageList = new MessageList();
+  var lines = file.split('\n');
+  var title = "";
+  var currUser = "";
+
+  for (var line = 0; line < lines.length; line++) {
+
+    var currLine = lines[line];
+
+    if(line == 0)
+    {
+      messageList.title = currLine;
+    }
+    else if(currLine.charAt(0) === "=")
+    {
+      //
+    }
+    else
+    {
+      if(currLine.substring(0,2) === "# ")//user
+      {
+        currUser = currLine.substring(2);
+      } 
+      else if(currLine)
+      {
+        messageList.add(currLine, currUser);
+      }
+    }
+  }
+  return messageList;
+}
