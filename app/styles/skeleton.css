@@ -7,7 +7,7 @@
 
 /* STRUCTURE */
 body {
-	font-family: 'Roboto', sans-serif;
+	font-family: 'DINPro', sans-serif;
   font: 14px;
   /*margin: 20px;*/
 }
@@ -125,4 +125,21 @@ MEDIA QUERIES
 header, #left, #middle, #right {
 	margin-bottom: 5px;
 	padding: 2px;
+}
+
+.tip
+{
+	margin: 7px 10px;
+	width: 95px;
+}
+.tipBig
+{
+	
+	margin: 10px;
+	width: 180px;
+}
+
+.__react_component_tooltip {
+    padding: 0px!important;
+    margin: 10px;
 }

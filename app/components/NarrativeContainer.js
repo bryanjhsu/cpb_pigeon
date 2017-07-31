@@ -1,6 +1,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 import { Button, ButtonToolbar } from 'react-bootstrap';
+import ReactTooltip from 'react-tooltip'
 
 
 
@@ -20,6 +21,11 @@ class NarrativeContainer extends React.Component {
     this.restartEvent = this.restartEvent.bind(this);
     this.prevMessageEvent = this.prevMessageEvent.bind(this);
     this.allMessagesEvent = this.allMessagesEvent.bind(this);
+  
+    key('right', this.nextMessageEvent);
+    key('up', this.restartEvent);
+    key('left', this.prevMessageEvent);
+    key('down', this.allMessagesEvent);
 
    this.updateMessageHighlightedIndex = this.updateMessageHighlightedIndex.bind(this);
   }
@@ -28,7 +34,6 @@ class NarrativeContainer extends React.Component {
   {
     this.setState({messageList:newProps.dialogue});
   }
-
 
   updateMessageHighlightedIndex(index)
   {
@@ -103,16 +108,16 @@ class NarrativeContainer extends React.Component {
     return(
       <div className = "buttonNav">
 
-        <Button className = "button btnHover" bsStyle="primary" bsSize="small" 
+        <Button data-tip data-for='restartTip' className = "button btnHover" bsStyle="primary" bsSize="small" 
         onClick={this.restartEvent}>Restart</Button>
  
-        <Button className = "button btnHover" bsStyle="primary" bsSize="small" 
+        <Button data-tip data-for='prevTip' className = "button btnHover" bsStyle="primary" bsSize="small" 
         id = "previousBtn" onClick={this.prevMessageEvent}>Previous</Button>
 
-        <Button className = "button btnHover" bsStyle="primary" bsSize="small" 
+        <Button data-tip data-for='nextTip' className = "button btnHover" bsStyle="primary" bsSize="small" 
         onClick={this.nextMessageEvent}>Next</Button>
 
-        <Button className = "button btnHover" bsStyle="primary" bsSize="small" 
+        <Button data-tip data-for='allTip' className = "button btnHover" bsStyle="primary" bsSize="small" 
         onClick={this.allMessagesEvent}>Show All</Button>
 
       </div>

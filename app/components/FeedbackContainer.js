@@ -2,6 +2,7 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 
 import {Button, Tab, Tabs, Checkbox, FormGroup, ControlLabel, FormControl} from 'react-bootstrap';
+import ReactTooltip from 'react-tooltip';
 
 class FeedbackContainer extends React.Component {
 
@@ -83,7 +84,7 @@ class FeedbackContainer extends React.Component {
     return (
     <div id='comments'>
       {this.renderComment(dana,"Generally, this conversation could still use some work.", 1)}
-      {this.renderComment(bryan,"Would someone actually respond to that question in that way?", 2)}
+      {this.renderComment(bryan,"Yes, but generally it's generally pretty general.", 2)}
       {this.renderComment(emma,"I like turtles", 0)}
     </div>
     );
@@ -99,7 +100,7 @@ class FeedbackContainer extends React.Component {
   		        	<h1 className = "title">
   		        	   COMMENTS
   		        	</h1>
-                <p id="commentsDescription"/>
+                <p id="commentsDescription"> 1 Unresolved Thread</p>
          			</div>
               {this.renderTabs()}
   		    </div>

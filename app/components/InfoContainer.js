@@ -70,7 +70,7 @@ class InfoContainer extends React.Component {
 		        	<img id = "shareIcon" src="/public/assets/icons/share.png" width="12" /> 
 	       			 </Button>
 	       			 <ReactTooltip id='shareTip' place='right' effect='solid' type='info'>
-					  <span>Click this button to share this narrative with someone. </span>
+					  <div className="tip">Click this button to share this narrative with someone. </div>
 					</ReactTooltip>
        			 </div>
 		        <div className="describeText" id = "scenarioDescribe">
@@ -101,20 +101,20 @@ class InfoContainer extends React.Component {
 					  Emma Davis</li>
 					</ul>
 					<div id = "infoBtns">
-						<Button data-tip data-for='newTip' id = "approveBtn" className = "button btnHover info" bsStyle="primary" bsSize="small">
+						
+
+		       			 <Button data-tip data-for='newTip' id = "exportBtn" className = "button btnHover info" bsStyle="primary" bsSize="small">
 			        	Approve Scenario
 		       			 </Button>
-
 		       			  <ReactTooltip id='newTip' place='bottom' effect='solid' type='info'>
-						  <span>Click this button to officially approve this scenario for production. </span>
+						  <div className="tip">Approve current scenario for production. </div>
 						</ReactTooltip>
 
 		       			 <Button data-tip data-for='exportTip' id = "exportBtn" className = "button btnHover info" bsStyle="primary" bsSize="small">
 			        	Export File
 		       			 </Button>
-
-		       			 <ReactTooltip id='exportTip' place='right' effect='solid' type='info'>
-						  <span>Click this button to share this narrative with someone. </span>
+		       			 <ReactTooltip id='exportTip' place='bottom' effect='solid' type='info'>
+						  <div className="tip">Download the conversation as a markdown file for editing. </div>
 						</ReactTooltip>
 
 	       			 </div>
@@ -122,14 +122,14 @@ class InfoContainer extends React.Component {
 
 	        <hr/>
 
-	        <div id = "adminContainer">
+	        <div id = "adminContainer"  data-tip data-for='adminTip'>
 	        	<h1 className = "titleSmall">
 	        	ADMIN
 	        	</h1>
 
 	        	<div id = "infoBtns">
 	        		
-						<span className ="adminBtn btnHover">
+						<span className ="adminBtn btnHover" >
 						<label id="uploadLabel" htmlFor="file-input">
 							Upload New File
 							<img className = "adminIcon" src="/public/assets/icons/upload.png" width="8" /> 
@@ -149,7 +149,12 @@ class InfoContainer extends React.Component {
 					
 
 	       		</div>
+
+	       		
 		    </div>
+		    <ReactTooltip id='adminTip' place='top' effect='solid' type='info'>
+			  <div className="tipBig">Admin controls to upload, create, and delete scenarios. </div>
+			</ReactTooltip>
 
         </div>
 
