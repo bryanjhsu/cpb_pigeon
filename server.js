@@ -9,7 +9,7 @@ var express     =   require('express'),
     port        =   process.env.PORT || 8000
 
 console.log('*********************************************',
-      '\n***           Pigeon Pretotype           ***',
+      '\n***           Pigeon Pretotype            ***',
       '\n*********************************************')
 
 
