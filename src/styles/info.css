@@ -1,0 +1,132 @@
+#leftContainer 
+{
+	text-align: left;
+	margin: 15px;
+}
+
+.adminBtn > input
+{
+    display: none;
+    cursor: pointer;
+}
+
+#file-input
+{
+	display:none;
+
+}
+
+label
+{
+	cursor: pointer;
+	font-weight: normal;
+}
+
+
+
+.title
+{
+	color: var(--primary);
+	font-weight: bold;
+	font-size: 22px;
+	display: inline-block;
+}
+
+.titleSmall
+{
+	color: var(--primary);
+	font-size: 14px;
+	font-weight: bold;
+}
+
+#scenarioContainer
+{
+
+}
+
+#scenarioDescribe
+{
+
+
+}
+
+#infoContainer
+{
+	margin-top: -25px;
+}
+
+#infoDescibe
+{
+
+}
+
+#topHeader
+{
+	font-size: 18px;
+}
+
+#bottomHeader
+{
+	font-size: 17px;
+}
+
+.describeText{
+	color: #808080;
+	font-size: 13px;
+	margin-top: 5px;
+	text-align: left;
+}
+
+hr{
+	border-top: 1px solid #8c8b8b;
+	padding: 0;
+}
+
+hr.headerSeparator
+{
+	margin: 0px;
+}
+
+.userImg
+{
+	margin-left: 2px;
+	margin-right: 2px;
+}
+
+#shareBtn
+{
+	margin-left: 20px;
+	margin-top: 1px;
+}
+
+#shareIcon
+{
+	margin-left: 5px;
+	margin-bottom: 3px;
+}
+
+#infoBtns
+{
+	color: #808080;
+	margin-left: -15px;
+	font-size: 10px;
+	display: inline-block;
+}
+
+#adminContainer
+{
+	position: absolute;
+	bottom:50px;
+}
+
+.adminBtn
+{
+	margin: 15px;
+}
+
+.adminIcon
+{
+	margin-left: 4px;
+}
+
+

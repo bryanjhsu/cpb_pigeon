@@ -1,0 +1,69 @@
+.header
+{
+	height:auto;
+	padding: 0;
+	text-align: left;
+
+}
+#topHeader
+{
+	clear:both;
+	height: auto;
+	color: #FFFFFF;
+	font-weight: normal;
+	background: #222222;
+}
+
+#bottomHeader
+{
+	font-family: "DINPro";
+	font-size: medium;
+	clear: both;
+	height: auto;
+	margin-left: 8px;
+	margin-top: 3px;
+
+}
+
+.pageHeader
+{
+	font-size: 17px;
+	padding: 5px;
+	margin: 0px;
+	margin-bottom: 5px;
+}
+
+#hermy{
+	margin-left: 5px;
+	height: 30px;
+}
+
+#headerButtons
+{
+	float: right;
+	text-align: right;
+}
+
+.headerButton
+{
+	height: 17px;
+	margin-left: 10px;
+	margin-right: 10px;
+	cursor: pointer;
+}
+
+#app_title
+{
+	font-size: 19px;
+	display: inline-block;
+	position: absolute;
+	margin-left: 2px;
+	margin-top: 1px;
+	
+}
+
+#brand_logo
+{
+	margin: 2px;
+	margin-bottom: 5px;
+}
