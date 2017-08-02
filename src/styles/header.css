@@ -3,7 +3,6 @@
 	height:auto;
 	padding: 0;
 	text-align: left;
-
 }
 #topHeader
 {
@@ -24,7 +23,7 @@
 {
 		font-size:20px;
 	color: var(--secondary);
-	margine-right:2px;
+	margin-right:2px;
 	display: inline;
 	margin-bottom: 20px;
 }
@@ -70,6 +69,7 @@
 
 #app_title
 {
+	letter-spacing: 2px;
 	font-size: 21px;
 	display: inline-block;
 	vertical-align: center;

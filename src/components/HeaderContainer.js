@@ -10,7 +10,7 @@ class HeaderContainer extends React.Component {
       <div className = 'header'>
       	<div className = 'pageHeader' id = "topHeader" > 
       		<img id="app_logo" src = "./assets/misc/pigeon.png" alt="Pigeon"/>
-      		<p id="app_title"> P I G E O N</p>
+      		<p id="app_title"> PIGEON</p>
       		<span id="headerButtons">
 	      		<img id="settings" className = "headerButton" src ="./assets/icons/settings.png" alt="Settings"/>
 	      		<img id="user" className = "headerButton" src ="./assets/icons/user.png" alt="User Profile"/>

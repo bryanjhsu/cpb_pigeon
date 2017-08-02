@@ -41,7 +41,8 @@ label
 
 #scenarioContainer
 {
-
+	height: 150px;
+	overflow: hidden;
 }
 
 #scenarioDescribe
@@ -53,8 +54,9 @@ label
 #infoContainer
 {
 	margin-top: -25px;
-	height: 40vh;
+	height: calc(55vh - 100px);
 	position: relative;
+	overflow: hidden;
 }
 
 #topHeader
@@ -72,7 +74,7 @@ label
 	font-size: 13px;
 	margin-top: 5px;
 	text-align: left;
-	overflow: scroll;
+	overflow: hidden;
 	height: 100%;
 }
 

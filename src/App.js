@@ -7,7 +7,7 @@ import HeaderContainer from './components/HeaderContainer';
 
 import {Grid, Row} from 'react-bootstrap'
 import {parseMarkdownToDialogue, MessageList} from './other/MessageList.js';
-import defaultMd from "./md/default.js";
+import defaultMd from "./other/default.js";
 
 class App extends React.Component {
   //onupload -> parse md to dialogue -> populate narrative with dialogue

@@ -126,7 +126,12 @@ header, #left, #middle, #right {
 	margin-bottom: 5px;
 	padding: 2px;
 }
-
+.tipSmall
+{
+	margin: 2px 8px 2px 8px;
+	height: 20px;
+	text-align: center;
+}
 .tip
 {
 	margin: 7px 10px;

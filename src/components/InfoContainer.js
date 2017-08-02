@@ -72,7 +72,7 @@ class InfoContainer extends React.Component {
 		        	<img id = "shareIcon" src="./assets/icons/share.png" width="12" /> 
 	       			 </Button>
 	       			 <ReactTooltip id='shareTip' place='right' effect='solid' type='info'>
-					  <div className="tip">Click this button to share this narrative with someone. </div>
+					  <div className="tip">Distribute / share for review & approval </div>
 					</ReactTooltip>
        			 </div>
 		        <div className="describeText" id = "scenarioDescribe">
@@ -159,7 +159,7 @@ class InfoContainer extends React.Component {
 	       		
 		    </div>
 		    <ReactTooltip id='adminTip' place='top' effect='solid' type='info'>
-			  <div className="tipBig">Admin controls to upload, create, and delete scenarios. </div>
+			  <div className="tipBig">Dialogue admin controls to upload, create, and delete scenarios. </div>
 			</ReactTooltip>
 
         </div> 

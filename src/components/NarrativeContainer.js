@@ -102,7 +102,7 @@ class NarrativeContainer extends React.Component {
   renderButtons()
   {
     return(
-      <div className = "buttonNav">
+      <div className = "buttonNav" >
  
         <Button data-tip data-for='prevTip' className = "button btnHover" bsStyle="primary" bsSize="small" 
         id = "previousBtn" onClick={this.prevMessageEvent}>Previous</Button>
@@ -111,7 +111,7 @@ class NarrativeContainer extends React.Component {
         onClick={this.nextMessageEvent}>Next</Button>
 
         <Button data-tip data-for='restartTip' className = "smallButton btnHover" bsStyle="primary" bsSize="small" 
-        onClick={this.restartEvent}><img id = "shareIcon" src="./assets/icons/undo.png" width="12" />  </Button>
+        onClick={this.restartEvent}><img src="./assets/icons/undo.png" width="12" />  </Button>
 
 
  
@@ -124,9 +124,24 @@ class NarrativeContainer extends React.Component {
           <span data-tip data-for='scenarioTip' className ="navSmallBtn btnHover" >
             All Scenarios
           </span>
+            <ReactTooltip id='prevTip' place='bottom' effect='solid' type='info'>
+              <div className="tipSmall">Shortcut: &larr; key</div>
+            </ReactTooltip>
 
+            <ReactTooltip id='nextTip' place='bottom' effect='solid' type='info'>
+              <div className="tipSmall">Shortcut: &rarr; key</div>
+            </ReactTooltip>
 
+          <ReactTooltip id='restartTip' place='bottom' effect='solid' type='info'>
+              <div className="tipSmall">Shortcut: &uarr; key</div>
+            </ReactTooltip>
+
+            <ReactTooltip id='allTip' place='top' effect='solid' type='info'>
+              <div className="tipSmall">Shortcut: &darr; key</div>
+            </ReactTooltip>
       </div>
+
+
     );
   }
 
