@@ -5,6 +5,8 @@ import ReactTooltip from 'react-tooltip'
 
 import key from '../other/keymaster.js'
 
+import parseMarkdownToDialogue from '../other/MessageList.js';
+
 class NarrativeContainer extends React.Component {
 
   constructor(props) {
@@ -32,6 +34,7 @@ class NarrativeContainer extends React.Component {
 
   componentWillReceiveProps(newProps)
   {
+    console.log()
     this.setState({messageList:newProps.dialogue});
   }
 
@@ -58,29 +61,23 @@ class NarrativeContainer extends React.Component {
       }
 
       //get current message, and work way backwards to oldest message
-      if(currMessage != null)
+      while(currMessage != null)
       {
-        while(currMessage.previous != null)
-        {
-          msgs.unshift(currMessage);
-
-          currMessage = currMessage.previous;
-        }  
-      }
-
+        console.log(currMessage);
+        msgs.unshift(currMessage);
+        currMessage = currMessage.previous;
+      }  
+      
       //set current message as highlighted if message navigation is used
       //otherwise, highlighted message determined by click
-      if(this.state.highlightedIndex < 0 || msgs.length == 1)
+      if(this.state.highlightedIndex < 0 || msgs.length == 2)
       {
         if(isLastMessage)
-        {
-            this.state.highlightedIndex = msgs.length - 1;
-        }
+          this.state.highlightedIndex = msgs.length - 1;
         else
-        {
           this.state.highlightedIndex = msgs.length - 2;
-        }
       }
+
 
       const messageDivs = msgs.map((msg, index) => 
         <MessageDiv
@@ -99,8 +96,6 @@ class NarrativeContainer extends React.Component {
           {(isLastMessage) ? (<div id = "emptyDiv" className="emptyMsg"> end of conversation </div>):<div/>}
         </div>
       );
-         
-
     }
   }
 
@@ -115,8 +110,10 @@ class NarrativeContainer extends React.Component {
         <Button data-tip data-for='nextTip' className = "button btnHover" bsStyle="primary" bsSize="small" 
         onClick={this.nextMessageEvent}>Next</Button>
 
-        <Button data-tip data-for='restartTip' className = "button btnHover" bsStyle="primary" bsSize="small" 
-        onClick={this.restartEvent}>Restart</Button>
+        <Button data-tip data-for='restartTip' className = "smallButton btnHover" bsStyle="primary" bsSize="small" 
+        onClick={this.restartEvent}><img id = "shareIcon" src="./assets/icons/undo.png" width="12" />  </Button>
+
+
  
         <hr id = "narrativeHr"/>
 
@@ -244,6 +241,10 @@ class MessageDiv extends React.Component
   componentWillReceiveProps(newProps)
   {
     this.setState({isFocused:newProps.isFocused});
+    this.setState({index:newProps.index});
+    this.setState({user:newProps.user});
+    this.setState({data:newProps.data});
+    this.setState({message:newProps.message});
   }
 
   handleMessageClick()
@@ -254,7 +255,11 @@ class MessageDiv extends React.Component
   render() {
     return(
         <div className = "message" key = {this.state.key} id = {(this.state.user === "bot") ? 'messageLeft' : 'messageRight'}>
-          <img className = "messageImg" id = {(this.state.user === "bot") ? 'messageImgLeft' : 'messageImgRight'}/>
+          {!isPreviousMessageSameUser(this.state.message)?
+            <img className = "messageImg" id = {(this.state.user === "bot") ? 'messageImgLeft' : 'messageImgRight'}/>
+            :
+            <div/>
+          }
           <div className = {"messageContent" + (this.state.isFocused ? " messageFocused" : "")}
                 id = {(this.state.user === "bot") ? 'messageContentLeft' : 'messageContentRight'}
                 onClick = {this.handleMessageClick}>
@@ -264,6 +269,14 @@ class MessageDiv extends React.Component
       );
 
   }
+}
+
+function isPreviousMessageSameUser(message)
+{
+  if(message.previous != null)
+    return message.previous.user === message.user;
+  else
+    return false;
 }
 
 export default NarrativeContainer;

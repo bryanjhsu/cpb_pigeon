@@ -37,6 +37,17 @@
   min-width: 100px;
 }
 
+.smallButton,
+.smallButton:hover,
+.smallButton:active,
+.smallButton:focus {
+  margin:12px;
+  background: var(--secondary);;
+  opacity: 0.8;
+  border: none;
+  min-width: 20px;
+}
+
 .buttonNav {
   text-align: right;
 }

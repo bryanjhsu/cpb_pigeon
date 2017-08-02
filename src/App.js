@@ -6,6 +6,8 @@ import FeedbackContainer from './components/FeedbackContainer';
 import HeaderContainer from './components/HeaderContainer';
 
 import {Grid, Row} from 'react-bootstrap'
+import {parseMarkdownToDialogue, MessageList} from './other/MessageList.js';
+import defaultMd from "./md/default.js";
 
 class App extends React.Component {
   //onupload -> parse md to dialogue -> populate narrative with dialogue
@@ -25,6 +27,13 @@ class App extends React.Component {
   }
 
   render() {
+    if(this.state.dialogue == null)
+    {
+        var d = parseMarkdownToDialogue(defaultMd);
+        this.state.dialogue = d;
+    }
+
+
     return (
       <div id = 'content' className='container'>
 

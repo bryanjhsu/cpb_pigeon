@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import { Button, ButtonToolbar } from 'react-bootstrap';
 import ReactTooltip from 'react-tooltip'
 
-import MessageList from '../other/MessageList.js';
+import {parseMarkdownToDialogue, MessageList} from '../other/MessageList.js';
 
 class InfoContainer extends React.Component {
 
@@ -27,7 +27,7 @@ class InfoContainer extends React.Component {
 
     function sendDialogueToParent(dialogue)
     {
-       this.props.uploadCallback(dialogue)
+       this.props.uploadCallback(dialogue);
     }
     sendDialogueToParent = sendDialogueToParent.bind(this);
 
@@ -168,7 +168,7 @@ class InfoContainer extends React.Component {
   }
 }
 
-function parseMarkdownToDialogue(file)
+function parseMarkdown2ToDialogue(file)
 {
   //creates a new dialogue (MessageList Object)
   //read first line and first instance of =
