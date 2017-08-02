@@ -51,10 +51,10 @@ class InfoContainer extends React.Component {
   render() {   
 
   	let describeText = 
-  	"Informed user asks for the $5.99 Mix & Match coupon before adding any food items." 
-  	+" User Completes the coupon and immediately proceeds to checkout.";
+  	"A guest user invokes Domino's using Google Home. After proceeding through location services, they"
+  	+" place a full order. Simple product and ingredient choices are used to streamline the ordering narrative."
   	let describeText2= 
-  	"Alternate copy options included addressing varying levels of coupon guidance. A.1a, A.1b";
+  	"";
 
     return(
       //after turning md into ll, go through ll and turn to messages
@@ -65,7 +65,7 @@ class InfoContainer extends React.Component {
 
 	        	<div>
 		        	<h1 className = "title">
-		        	A.1 HAPPY PATH
+		        	GOOGLE HOME
 		        	</h1>
 		        	<Button data-tip data-for='shareTip'id = "shareBtn" className = "button btnHover" bsStyle="primary" bsSize="small">
 		        	Share
@@ -120,9 +120,13 @@ class InfoContainer extends React.Component {
 						</ReactTooltip>
 
 	       			 </div>
+		        </div>
+
+
 	        </div>
 
-	        <hr/>
+
+		        <hr/>
 
 	        <div id = "adminContainer"  data-tip data-for='adminTip'>
 	        	<h1 className = "titleSmall">
@@ -157,8 +161,6 @@ class InfoContainer extends React.Component {
 		    <ReactTooltip id='adminTip' place='top' effect='solid' type='info'>
 			  <div className="tipBig">Admin controls to upload, create, and delete scenarios. </div>
 			</ReactTooltip>
-
-        </div>
 
         </div> 
       </div>

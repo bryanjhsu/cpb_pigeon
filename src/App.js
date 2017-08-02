@@ -1,9 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import NarrativeContainer from './components/NarrativeContainer';
 import InfoContainer from './components/InfoContainer';
 import FeedbackContainer from './components/FeedbackContainer';
 import HeaderContainer from './components/HeaderContainer';
+
+import {Grid, Row} from 'react-bootstrap'
 
 class App extends React.Component {
   //onupload -> parse md to dialogue -> populate narrative with dialogue

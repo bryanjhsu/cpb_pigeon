@@ -53,11 +53,8 @@ label
 #infoContainer
 {
 	margin-top: -25px;
-}
-
-#infoDescibe
-{
-
+	height: 40vh;
+	position: relative;
 }
 
 #topHeader
@@ -75,6 +72,8 @@ label
 	font-size: 13px;
 	margin-top: 5px;
 	text-align: left;
+	overflow: scroll;
+	height: 100%;
 }
 
 hr{

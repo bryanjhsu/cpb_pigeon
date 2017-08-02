@@ -12,6 +12,21 @@
 	color: #FFFFFF;
 	font-weight: normal;
 	background: #222222;
+	height:35px;
+}
+
+.headerTxt
+{
+	display: inline;
+	margin-bottom: 10px;
+}
+.carrot
+{
+		font-size:20px;
+	color: var(--secondary);
+	margine-right:2px;
+	display: inline;
+	margin-bottom: 20px;
 }
 
 #bottomHeader
@@ -19,7 +34,7 @@
 	font-family: "DINPro";
 	font-size: medium;
 	clear: both;
-	height: auto;
+	height: 37px;
 	margin-left: 8px;
 	margin-top: 3px;
 
@@ -28,14 +43,14 @@
 .pageHeader
 {
 	font-size: 17px;
-	padding: 5px;
 	margin: 0px;
-	margin-bottom: 5px;
 }
 
-#hermy{
-	margin-left: 5px;
-	height: 30px;
+#app_logo{
+	position: absolute;
+	height: 35px;
+	top: 0px;
+	left: 0px;
 }
 
 #headerButtons
@@ -48,18 +63,18 @@
 {
 	height: 17px;
 	margin-left: 10px;
-	margin-right: 10px;
+	margin-right: 20px;
+	margin-top: 2px;
 	cursor: pointer;
 }
 
 #app_title
 {
-	font-size: 19px;
+	font-size: 21px;
 	display: inline-block;
+	vertical-align: center;
 	position: absolute;
-	margin-left: 2px;
-	margin-top: 1px;
-	
+	margin: 2px 0 0 45px;
 }
 
 #brand_logo

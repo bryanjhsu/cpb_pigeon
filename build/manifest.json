@@ -1,9 +1,9 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Pigeon",
+  "name": "CP+B Pigeon",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "f.ico",
       "sizes": "192x192",
       "type": "image/png"
     }

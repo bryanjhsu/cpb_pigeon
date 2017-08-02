@@ -50,6 +50,7 @@ class FeedbackContainer extends React.Component {
           <span className = 'commentName'>
           {user.name}
           </span>
+          <CarrotButton/>
         </div>
         <p className = "commentContent">
         {comment}
@@ -72,11 +73,11 @@ class FeedbackContainer extends React.Component {
   {
     return (
     <div id='comments'>
-      {this.renderComment(danny,"I'm commenting again because I'm still not sure about this whole crust situation.", 1)}
-      {this.renderComment(bryan,"Would someone actually respond to that question in that way?", 1)}
-      {this.renderComment(emma,"I think people will probably forget to specify what kind of crust they want.", 2)}
+      {this.renderComment(bryan,"Do we need the bot to repeat the phone number if it's already typed out on the screen?", 1)}
+      {this.renderComment(dana,"I think it will be something reassuring for the customer to see.", 1)}
+      {this.renderComment(michelle,"I think people will probably forget to specify what kind of crust they want.", 2)}
+      {this.renderComment(emma,"Okay, Great! I just wanted to double check. Sounds good to me.", 1)}
       {this.renderComment(emma,"Thanks for resolving my issue!", 0)}
-      {this.renderComment(michelle,"I'm commenting again because I'm still not sure about this whole crust situation.", 1)}
     </div>
     );
   }
@@ -85,9 +86,8 @@ class FeedbackContainer extends React.Component {
   {
     return (
     <div id='comments'>
-      {this.renderComment(dana,"Generally, this conversation could still use some work.", 1)}
-      {this.renderComment(bryan,"Yes, but generally it's generally pretty general.", 2)}
-      {this.renderComment(emma,"I like turtles", 0)}
+      {this.renderComment(bryan,"This conversation could still use some work.", 1)}
+      {this.renderComment(emma,"I agree, the bot needs to show more of its personality.", 2)}
     </div>
     );
   }
@@ -161,6 +161,13 @@ class LikeButton extends React.Component
     } else { 
         return ( <img className = "like" src="./assets/icons/thumbs_off.png" width="14" onClick={this.onClick}/>);
     }
+  }
+}
+
+class CarrotButton extends React.Component
+{
+  render() {
+    return ( <img className = "carrotDown" src="./assets/icons/carrot.png" width="14" />);
   }
 }
 

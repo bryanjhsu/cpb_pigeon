@@ -1,6 +1,5 @@
 
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Button, ButtonToolbar } from 'react-bootstrap';
 import ReactTooltip from 'react-tooltip'
 
@@ -85,6 +84,7 @@ class NarrativeContainer extends React.Component {
 
       const messageDivs = msgs.map((msg, index) => 
         <MessageDiv
+              message={msg}
               user={msg.user} 
               data={msg.data}
               isFocused={this.state.highlightedIndex === index}
@@ -108,9 +108,6 @@ class NarrativeContainer extends React.Component {
   {
     return(
       <div className = "buttonNav">
-
-        <Button data-tip data-for='restartTip' className = "button btnHover" bsStyle="primary" bsSize="small" 
-        onClick={this.restartEvent}>Restart</Button>
  
         <Button data-tip data-for='prevTip' className = "button btnHover" bsStyle="primary" bsSize="small" 
         id = "previousBtn" onClick={this.prevMessageEvent}>Previous</Button>
@@ -118,8 +115,19 @@ class NarrativeContainer extends React.Component {
         <Button data-tip data-for='nextTip' className = "button btnHover" bsStyle="primary" bsSize="small" 
         onClick={this.nextMessageEvent}>Next</Button>
 
-        <Button data-tip data-for='allTip' className = "button btnHover" bsStyle="primary" bsSize="small" 
-        onClick={this.allMessagesEvent}>Show All</Button>
+        <Button data-tip data-for='restartTip' className = "button btnHover" bsStyle="primary" bsSize="small" 
+        onClick={this.restartEvent}>Restart</Button>
+ 
+        <hr id = "narrativeHr"/>
+
+        <span data-tip data-for='allTip' className ="navSmallBtn btnHover" onClick={this.allMessagesEvent}>
+            Show Full Dialogue
+          </span>
+
+          <span data-tip data-for='scenarioTip' className ="navSmallBtn btnHover" >
+            All Scenarios
+          </span>
+
 
       </div>
     );
@@ -222,7 +230,8 @@ class MessageDiv extends React.Component
   {
     super(props);
     this.state = 
-    {
+    { 
+      message: props.message,
       index: props.index,
       user: props.user,
       data: props.data,

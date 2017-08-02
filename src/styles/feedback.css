@@ -54,6 +54,12 @@
 	font-size: 14px;
 }
 
+.carrotDown
+{
+	float:right;
+	cursor: pointer;
+}
+
 #commentsTop
 {
 
