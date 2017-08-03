@@ -4,10 +4,9 @@ import React from 'react';
 class HeaderContainer extends React.Component {
 
   render() {   
-
     return(
       //after turning md into ll, go through ll and turn to messages
-      <div className = 'header'>
+      <div className = "header">
       	<div className = 'pageHeader' id = "topHeader" > 
       		<img id="app_logo" src = "./assets/misc/pigeon.png" alt="Pigeon"/>
       		<p id="app_title"> PIGEON</p>
@@ -17,7 +16,7 @@ class HeaderContainer extends React.Component {
       		</span>
       	</div>
 
-      	<div className = 'pageHeader' id = "bottomHeader">
+      	<div className = {"pageHeader "+(this.props.isHideSides?" hiddenFade":" visibleFade")} id = "bottomHeader">
       	 	<p className = 'headerTxt'>HOME</p> <p className="carrot">></p>
       	 	<img id="brand_logo" src = "./assets/dominos/logo_dominos.png" width="20" alt="Domino's"/>
       	 	 DOMINO'S <p className="carrot">></p> 
@@ -25,7 +24,7 @@ class HeaderContainer extends React.Component {
            GOOGLE HOME
       	 </div>
 
-      	 <hr className = 'headerSeparator'/>
+      	 <hr className = {"headerSeparator "+(this.props.isHideSides?" hiddenFade":" visibleFade")}/>
       </div>
     );
   }

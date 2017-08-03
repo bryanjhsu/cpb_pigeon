@@ -1,19 +1,14 @@
 
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { Button, ButtonToolbar } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import ReactTooltip from 'react-tooltip'
 
-import {parseMarkdownToDialogue, MessageList} from '../other/MessageList.js';
+import {parseMarkdownToDialogue} from '../other/MessageList.js';
 
 class InfoContainer extends React.Component {
 
   constructor() {
     super();
-    this.state = {
-      
-    };
-
     this.onUploadMarkdown = this.onUploadMarkdown.bind(this);
 
   }
@@ -39,7 +34,7 @@ class InfoContainer extends React.Component {
         sendDialogueToParent(dialogue);
 
     }
-    var text = reader.readAsText(file);
+    reader.readAsText(file);
   }
 
   uploadFile(){
@@ -53,14 +48,11 @@ class InfoContainer extends React.Component {
   	let describeText = 
   	"A guest user invokes Domino's using Google Home. After proceeding through location services, they"
   	+" place a full order. Simple product and ingredient choices are used to streamline the ordering narrative."
-  	let describeText2= 
-  	"";
-
+  	let describeText2= "";
     return(
       //after turning md into ll, go through ll and turn to messages
-      <div className = 'wrapper'>
+      <div className = {"wrapper "+(this.props.isHideSides?" hiddenFade":" visibleFade")}>
 	    <div id='leftContainer'>
-
 	        <div id = "scenarioContainer">
 
 	        	<div>
@@ -166,48 +158,6 @@ class InfoContainer extends React.Component {
       </div>
     );
   }
-}
-
-function parseMarkdown2ToDialogue(file)
-{
-  //creates a new dialogue (MessageList Object)
-  //read first line and first instance of =
-  //this sets the title
-  //look for ## to find user
-
-  //anything after user is message from that user
-  //if no hashtag found again, anything after is 
-  ///a new message from same user
-  var messageList = new MessageList();
-  var lines = file.split('\n');
-  var title = "";
-  var currUser = "";
-
-  for (var line = 0; line < lines.length; line++) {
-
-    var currLine = lines[line];
-
-    if(line == 0)
-    {
-      messageList.title = currLine;
-    }
-    else if(currLine.charAt(0) === "=")
-    {
-      //
-    }
-    else
-    {
-      if(currLine.substring(0,2) === "# ")//user
-      {
-        currUser = currLine.substring(2);
-      } 
-      else if(currLine)
-      {
-        messageList.add(currLine, currUser);
-      }
-    }
-  }
-  return messageList;
 }
 
 export default InfoContainer;

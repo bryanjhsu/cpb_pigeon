@@ -1,3 +1,7 @@
+.bars
+{
+  margin-bottom: 100px;
+}
 .btnHover:hover
 {
     -webkit-transform: scale(1.1);

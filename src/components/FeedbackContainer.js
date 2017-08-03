@@ -1,10 +1,6 @@
 
 import React from 'react';
-import ReactDOM from 'react-dom';
-import {Button, Tab, Tabs, Checkbox, FormGroup, ControlLabel, FormControl} from 'react-bootstrap';
-import ReactTooltip from 'react-tooltip';
-
-import MessageList from '../other/MessageList.js';
+import {Button, Tab, Tabs, Checkbox, FormGroup, FormControl} from 'react-bootstrap';
 
 class FeedbackContainer extends React.Component {
 
@@ -57,11 +53,11 @@ class FeedbackContainer extends React.Component {
         </p>
         <div id='commentButtons'>
           <LikeButton/>
-          {resolveStatus == 1 &&
+          {resolveStatus === 1 &&
             <ResolveButton isResolved = {false}/>
           }
 
-          {resolveStatus == 2 &&
+          {resolveStatus === 2 &&
             <ResolveButton isResolved = {true}/>
           }
         </div>

@@ -1,12 +1,9 @@
 
 import React from 'react';
-import { Button, ButtonToolbar } from 'react-bootstrap';
+import {Button} from 'react-bootstrap';
 import ReactTooltip from 'react-tooltip'
 
 import key from '../other/keymaster.js'
-
-import parseMarkdownToDialogue from '../other/MessageList.js';
-
 class NarrativeContainer extends React.Component {
 
   constructor(props) {
@@ -34,7 +31,6 @@ class NarrativeContainer extends React.Component {
 
   componentWillReceiveProps(newProps)
   {
-    console.log()
     this.setState({messageList:newProps.dialogue});
   }
 
@@ -63,14 +59,13 @@ class NarrativeContainer extends React.Component {
       //get current message, and work way backwards to oldest message
       while(currMessage != null)
       {
-        console.log(currMessage);
         msgs.unshift(currMessage);
         currMessage = currMessage.previous;
       }  
       
       //set current message as highlighted if message navigation is used
       //otherwise, highlighted message determined by click
-      if(this.state.highlightedIndex < 0 || msgs.length == 2)
+      if(this.state.highlightedIndex < 0 || msgs.length === 2)
       {
         if(isLastMessage)
           this.state.highlightedIndex = msgs.length - 1;
@@ -124,6 +119,11 @@ class NarrativeContainer extends React.Component {
           <span data-tip data-for='scenarioTip' className ="navSmallBtn btnHover" >
             All Scenarios
           </span>
+
+          <span data-tip data-for='toggleTip' className ="navSmallBtn btnHover" onClick={this.props.hideSidesCallback} >
+            Toggle Sidebars
+          </span>
+
             <ReactTooltip id='prevTip' place='bottom' effect='solid' type='info'>
               <div className="tipSmall">Shortcut: &larr; key</div>
             </ReactTooltip>
@@ -138,6 +138,10 @@ class NarrativeContainer extends React.Component {
 
             <ReactTooltip id='allTip' place='top' effect='solid' type='info'>
               <div className="tipSmall">Shortcut: &darr; key</div>
+            </ReactTooltip>
+
+            <ReactTooltip id='toggleTip' place='top' effect='solid' type='info'>
+              <div className="tipSmall">Collapse utility interfaces into "no-distractions" mode</div>
             </ReactTooltip>
       </div>
 
@@ -163,7 +167,6 @@ class NarrativeContainer extends React.Component {
       if(this.state.messageList.curr.next)
       {
         this.state.messageList.curr = this.state.messageList.curr.next;
-        console.log(this.state.messageList.curr);
       }
     }
     this.state.highlightedIndex = -1
@@ -204,19 +207,11 @@ class NarrativeContainer extends React.Component {
     element.scrollTop = element.scrollHeight;
   }
 
-   handleKeyPress(event)
-   {
-    console.log(event.key);
-    if(event.key == 'Enter'){
-      console.log('enter press here! ')
-    }
-  }
-
   render() {   
     var msgs = this.state.messageList;
     return(
       <div className = 'wrapper'>
-        <div className='narrativeContainer' ref='narrativeContainer' onKeyDown={this.handleKeyPress}>
+        <div className='narrativeContainer' ref='narrativeContainer'>
             {this.state.messageList == null ? <p id="emptyUpload"> Please upload a markdown file with the "Upload New File" button in the bottom left.</p>: <p/>}
             {this.renderMessages()}
         </div>

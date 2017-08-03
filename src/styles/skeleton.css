@@ -7,6 +7,7 @@
 
 /* STRUCTURE */
 body {
+	-webkit-tap-highlight-color: rgba(255, 255, 255, 0);
 	font-family: 'DINPro', sans-serif;
   font: 14px;
   /*margin: 20px;*/
@@ -121,6 +122,7 @@ MEDIA QUERIES
 }*/
 #right, #left {
 	background: #f0efef;
+	position: relative;
 }
 header, #left, #middle, #right {
 	margin-bottom: 5px;
@@ -147,4 +149,28 @@ header, #left, #middle, #right {
 .__react_component_tooltip {
     padding: 0px!important;
     margin: 10px;
+}
+
+.collapseBtn
+{
+	background-color: #f0efef;
+	border: none;;
+	position: absolute;
+	right: -10px;
+	top: 0;
+	bottom: 0;
+	margin-left: 100px;
+	width:10px;
+}
+
+.visibleFade {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 2s linear;
+}
+
+.hiddenFade {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s 2s, opacity 2s linear;
 }
