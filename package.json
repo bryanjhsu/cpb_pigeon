@@ -17,6 +17,7 @@
   },
   "scripts": {
     "start": "node server.js",
+    "postinstall" : "react-scripts build",
     "dev": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",

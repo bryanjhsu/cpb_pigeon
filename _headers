@@ -1,5 +1,0 @@
-## A path:
-/templates/index.html
-  # Headers for that path:
-  X-Robots-Tag: noindex nofollow
-  Basic-Auth: cpbreview:cpb4all
