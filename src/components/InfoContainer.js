@@ -1,19 +1,14 @@
 
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { Button, ButtonToolbar } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import ReactTooltip from 'react-tooltip'
 
-import MessageList from '../other/MessageList.js';
+import {parseMarkdownToDialogue} from '../other/MessageList.js';
 
 class InfoContainer extends React.Component {
 
   constructor() {
     super();
-    this.state = {
-      
-    };
-
     this.onUploadMarkdown = this.onUploadMarkdown.bind(this);
 
   }
@@ -27,7 +22,7 @@ class InfoContainer extends React.Component {
 
     function sendDialogueToParent(dialogue)
     {
-       this.props.uploadCallback(dialogue)
+       this.props.uploadCallback(dialogue);
     }
     sendDialogueToParent = sendDialogueToParent.bind(this);
 
@@ -39,7 +34,7 @@ class InfoContainer extends React.Component {
         sendDialogueToParent(dialogue);
 
     }
-    var text = reader.readAsText(file);
+    reader.readAsText(file);
   }
 
   uploadFile(){
@@ -51,28 +46,25 @@ class InfoContainer extends React.Component {
   render() {   
 
   	let describeText = 
-  	"Informed user asks for the $5.99 Mix & Match coupon before adding any food items." 
-  	+" User Completes the coupon and immediately proceeds to checkout.";
-  	let describeText2= 
-  	"Alternate copy options included addressing varying levels of coupon guidance. A.1a, A.1b";
-
+  	"A guest user invokes Domino's using Google Home. After proceeding through location services, they"
+  	+" place a full order. Simple product and ingredient choices are used to streamline the ordering narrative."
+  	let describeText2= "";
     return(
       //after turning md into ll, go through ll and turn to messages
-      <div className = 'wrapper'>
+      <div className = {"wrapper "+(this.props.isHideSides?" hiddenFade":" visibleFade")}>
 	    <div id='leftContainer'>
-
 	        <div id = "scenarioContainer">
 
 	        	<div>
 		        	<h1 className = "title">
-		        	A.1 HAPPY PATH
+		        	GOOGLE HOME
 		        	</h1>
 		        	<Button data-tip data-for='shareTip'id = "shareBtn" className = "button btnHover" bsStyle="primary" bsSize="small">
 		        	Share
 		        	<img id = "shareIcon" src="./assets/icons/share.png" width="12" /> 
 	       			 </Button>
 	       			 <ReactTooltip id='shareTip' place='right' effect='solid' type='info'>
-					  <div className="tip">Click this button to share this narrative with someone. </div>
+					  <div className="tip">Distribute / share for review & approval </div>
 					</ReactTooltip>
        			 </div>
 		        <div className="describeText" id = "scenarioDescribe">
@@ -120,9 +112,13 @@ class InfoContainer extends React.Component {
 						</ReactTooltip>
 
 	       			 </div>
+		        </div>
+
+
 	        </div>
 
-	        <hr/>
+
+		        <hr/>
 
 	        <div id = "adminContainer"  data-tip data-for='adminTip'>
 	        	<h1 className = "titleSmall">
@@ -155,57 +151,13 @@ class InfoContainer extends React.Component {
 	       		
 		    </div>
 		    <ReactTooltip id='adminTip' place='top' effect='solid' type='info'>
-			  <div className="tipBig">Admin controls to upload, create, and delete scenarios. </div>
+			  <div className="tipBig">Dialogue admin controls to upload, create, and delete scenarios. </div>
 			</ReactTooltip>
-
-        </div>
 
         </div> 
       </div>
     );
   }
-}
-
-function parseMarkdownToDialogue(file)
-{
-  //creates a new dialogue (MessageList Object)
-  //read first line and first instance of =
-  //this sets the title
-  //look for ## to find user
-
-  //anything after user is message from that user
-  //if no hashtag found again, anything after is 
-  ///a new message from same user
-  var messageList = new MessageList();
-  var lines = file.split('\n');
-  var title = "";
-  var currUser = "";
-
-  for (var line = 0; line < lines.length; line++) {
-
-    var currLine = lines[line];
-
-    if(line == 0)
-    {
-      messageList.title = currLine;
-    }
-    else if(currLine.charAt(0) === "=")
-    {
-      //
-    }
-    else
-    {
-      if(currLine.substring(0,2) === "# ")//user
-      {
-        currUser = currLine.substring(2);
-      } 
-      else if(currLine)
-      {
-        messageList.add(currLine, currUser);
-      }
-    }
-  }
-  return messageList;
 }
 
 export default InfoContainer;

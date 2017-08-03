@@ -7,6 +7,7 @@
 
 /* STRUCTURE */
 body {
+	-webkit-tap-highlight-color: rgba(255, 255, 255, 0);
 	font-family: 'DINPro', sans-serif;
   font: 14px;
   /*margin: 20px;*/
@@ -36,12 +37,12 @@ header {
 #left {
 	width: 24%;
 	float: left;
-	height: 90%;
+	height: 100%;
 }
 
 #middle {
 	width: 45%; /* Account for margins + border values */
-	height: 90%;
+	height: 100%;
 	display: inline-block;
 }
 
@@ -49,7 +50,7 @@ header {
 	width: 24%;
 	float: right;
 	display: inline-block;
-	height: 90%;
+	height: 100%;
 }
 
 /************************************************************************************
@@ -121,12 +122,18 @@ MEDIA QUERIES
 }*/
 #right, #left {
 	background: #f0efef;
+	position: relative;
 }
 header, #left, #middle, #right {
 	margin-bottom: 5px;
 	padding: 2px;
 }
-
+.tipSmall
+{
+	margin: 2px 8px 2px 8px;
+	height: 20px;
+	text-align: center;
+}
 .tip
 {
 	margin: 7px 10px;
@@ -142,4 +149,28 @@ header, #left, #middle, #right {
 .__react_component_tooltip {
     padding: 0px!important;
     margin: 10px;
+}
+
+.collapseBtn
+{
+	background-color: #f0efef;
+	border: none;;
+	position: absolute;
+	right: -10px;
+	top: 0;
+	bottom: 0;
+	margin-left: 100px;
+	width:10px;
+}
+
+.visibleFade {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 2s linear;
+}
+
+.hiddenFade {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s 2s, opacity 2s linear;
 }

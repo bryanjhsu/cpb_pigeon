@@ -41,7 +41,8 @@ label
 
 #scenarioContainer
 {
-
+	height: 150px;
+	overflow: hidden;
 }
 
 #scenarioDescribe
@@ -53,11 +54,9 @@ label
 #infoContainer
 {
 	margin-top: -25px;
-}
-
-#infoDescibe
-{
-
+	height: calc(55vh - 100px);
+	position: relative;
+	overflow: hidden;
 }
 
 #topHeader
@@ -75,6 +74,8 @@ label
 	font-size: 13px;
 	margin-top: 5px;
 	text-align: left;
+	overflow: hidden;
+	height: 100%;
 }
 
 hr{
@@ -116,7 +117,7 @@ hr.headerSeparator
 #adminContainer
 {
 	position: absolute;
-	bottom:50px;
+	bottom:100px;
 }
 
 .adminBtn
