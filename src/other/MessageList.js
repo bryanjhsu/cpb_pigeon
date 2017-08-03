@@ -28,7 +28,7 @@ Message.prototype.print = function()
     console.log(msg); 
 }
 
-function MessageList() {
+export function MessageList() {
     this._length = 0;
     this.head = null;
     this.curr = null;
@@ -77,7 +77,7 @@ MessageList.prototype.print = function() {
 };
 
 
-function parseMarkdownToDialogue(file)
+export function parseMarkdownToDialogue(file)
 {
   //creates a new dialogue (MessageList Object)
   //read first line and first instance of =
@@ -118,5 +118,3 @@ function parseMarkdownToDialogue(file)
   }
   return messageList;
 }
-
-export default MessageList;

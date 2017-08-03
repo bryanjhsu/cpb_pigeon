@@ -1,11 +1,9 @@
 
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { Button, ButtonToolbar } from 'react-bootstrap';
+import {Button} from 'react-bootstrap';
 import ReactTooltip from 'react-tooltip'
 
 import key from '../other/keymaster.js'
-
 class NarrativeContainer extends React.Component {
 
   constructor(props) {
@@ -59,32 +57,26 @@ class NarrativeContainer extends React.Component {
       }
 
       //get current message, and work way backwards to oldest message
-      if(currMessage != null)
+      while(currMessage != null)
       {
-        while(currMessage.previous != null)
-        {
-          msgs.unshift(currMessage);
-
-          currMessage = currMessage.previous;
-        }  
-      }
-
+        msgs.unshift(currMessage);
+        currMessage = currMessage.previous;
+      }  
+      
       //set current message as highlighted if message navigation is used
       //otherwise, highlighted message determined by click
-      if(this.state.highlightedIndex < 0 || msgs.length == 1)
+      if(this.state.highlightedIndex < 0 || msgs.length === 2)
       {
         if(isLastMessage)
-        {
-            this.state.highlightedIndex = msgs.length - 1;
-        }
+          this.state.highlightedIndex = msgs.length - 1;
         else
-        {
           this.state.highlightedIndex = msgs.length - 2;
-        }
       }
+
 
       const messageDivs = msgs.map((msg, index) => 
         <MessageDiv
+              message={msg}
               user={msg.user} 
               data={msg.data}
               isFocused={this.state.highlightedIndex === index}
@@ -99,18 +91,13 @@ class NarrativeContainer extends React.Component {
           {(isLastMessage) ? (<div id = "emptyDiv" className="emptyMsg"> end of conversation </div>):<div/>}
         </div>
       );
-         
-
     }
   }
 
   renderButtons()
   {
     return(
-      <div className = "buttonNav">
-
-        <Button data-tip data-for='restartTip' className = "button btnHover" bsStyle="primary" bsSize="small" 
-        onClick={this.restartEvent}>Restart</Button>
+      <div className = "buttonNav" >
  
         <Button data-tip data-for='prevTip' className = "button btnHover" bsStyle="primary" bsSize="small" 
         id = "previousBtn" onClick={this.prevMessageEvent}>Previous</Button>
@@ -118,10 +105,47 @@ class NarrativeContainer extends React.Component {
         <Button data-tip data-for='nextTip' className = "button btnHover" bsStyle="primary" bsSize="small" 
         onClick={this.nextMessageEvent}>Next</Button>
 
-        <Button data-tip data-for='allTip' className = "button btnHover" bsStyle="primary" bsSize="small" 
-        onClick={this.allMessagesEvent}>Show All</Button>
+        <Button data-tip data-for='restartTip' className = "smallButton btnHover" bsStyle="primary" bsSize="small" 
+        onClick={this.restartEvent}><img src="./assets/icons/undo.png" width="12" />  </Button>
 
+
+ 
+        <hr id = "narrativeHr"/>
+
+        <span data-tip data-for='allTip' className ="navSmallBtn btnHover" onClick={this.allMessagesEvent}>
+            Show Full Dialogue
+          </span>
+
+          <span data-tip data-for='scenarioTip' className ="navSmallBtn btnHover" >
+            All Scenarios
+          </span>
+
+          <span data-tip data-for='toggleTip' className ="navSmallBtn btnHover" onClick={this.props.hideSidesCallback} >
+            Toggle Sidebars
+          </span>
+
+            <ReactTooltip id='prevTip' place='bottom' effect='solid' type='info'>
+              <div className="tipSmall">Shortcut: &larr; key</div>
+            </ReactTooltip>
+
+            <ReactTooltip id='nextTip' place='bottom' effect='solid' type='info'>
+              <div className="tipSmall">Shortcut: &rarr; key</div>
+            </ReactTooltip>
+
+          <ReactTooltip id='restartTip' place='bottom' effect='solid' type='info'>
+              <div className="tipSmall">Shortcut: &uarr; key</div>
+            </ReactTooltip>
+
+            <ReactTooltip id='allTip' place='top' effect='solid' type='info'>
+              <div className="tipSmall">Shortcut: &darr; key</div>
+            </ReactTooltip>
+
+            <ReactTooltip id='toggleTip' place='top' effect='solid' type='info'>
+              <div className="tipSmall">Collapse utility interfaces into "no-distractions" mode</div>
+            </ReactTooltip>
       </div>
+
+
     );
   }
 
@@ -143,7 +167,6 @@ class NarrativeContainer extends React.Component {
       if(this.state.messageList.curr.next)
       {
         this.state.messageList.curr = this.state.messageList.curr.next;
-        console.log(this.state.messageList.curr);
       }
     }
     this.state.highlightedIndex = -1
@@ -184,19 +207,11 @@ class NarrativeContainer extends React.Component {
     element.scrollTop = element.scrollHeight;
   }
 
-   handleKeyPress(event)
-   {
-    console.log(event.key);
-    if(event.key == 'Enter'){
-      console.log('enter press here! ')
-    }
-  }
-
   render() {   
     var msgs = this.state.messageList;
     return(
       <div className = 'wrapper'>
-        <div className='narrativeContainer' ref='narrativeContainer' onKeyDown={this.handleKeyPress}>
+        <div className='narrativeContainer' ref='narrativeContainer'>
             {this.state.messageList == null ? <p id="emptyUpload"> Please upload a markdown file with the "Upload New File" button in the bottom left.</p>: <p/>}
             {this.renderMessages()}
         </div>
@@ -222,7 +237,8 @@ class MessageDiv extends React.Component
   {
     super(props);
     this.state = 
-    {
+    { 
+      message: props.message,
       index: props.index,
       user: props.user,
       data: props.data,
@@ -235,6 +251,10 @@ class MessageDiv extends React.Component
   componentWillReceiveProps(newProps)
   {
     this.setState({isFocused:newProps.isFocused});
+    this.setState({index:newProps.index});
+    this.setState({user:newProps.user});
+    this.setState({data:newProps.data});
+    this.setState({message:newProps.message});
   }
 
   handleMessageClick()
@@ -245,7 +265,11 @@ class MessageDiv extends React.Component
   render() {
     return(
         <div className = "message" key = {this.state.key} id = {(this.state.user === "bot") ? 'messageLeft' : 'messageRight'}>
-          <img className = "messageImg" id = {(this.state.user === "bot") ? 'messageImgLeft' : 'messageImgRight'}/>
+          {!isPreviousMessageSameUser(this.state.message)?
+            <img className = "messageImg" id = {(this.state.user === "bot") ? 'messageImgLeft' : 'messageImgRight'}/>
+            :
+            <div/>
+          }
           <div className = {"messageContent" + (this.state.isFocused ? " messageFocused" : "")}
                 id = {(this.state.user === "bot") ? 'messageContentLeft' : 'messageContentRight'}
                 onClick = {this.handleMessageClick}>
@@ -255,6 +279,14 @@ class MessageDiv extends React.Component
       );
 
   }
+}
+
+function isPreviousMessageSameUser(message)
+{
+  if(message.previous != null)
+    return message.previous.user === message.user;
+  else
+    return false;
 }
 
 export default NarrativeContainer;

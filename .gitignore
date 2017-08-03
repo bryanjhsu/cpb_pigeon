@@ -1,3 +1,7 @@
 node_modules/
 package-lock.json
+<<<<<<< HEAD
 *.log
+=======
+build/
+>>>>>>> 46d4cccb84efac58b3569273ce139c373813fabb

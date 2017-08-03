@@ -1,3 +1,7 @@
+.bars
+{
+  margin-bottom: 100px;
+}
 .btnHover:hover
 {
     -webkit-transform: scale(1.1);
@@ -37,8 +41,20 @@
   min-width: 100px;
 }
 
+.smallButton,
+.smallButton:hover,
+.smallButton:active,
+.smallButton:focus {
+  margin:12px;
+  background: var(--secondary);;
+  opacity: 0.8;
+  border: none;
+  min-width: 20px;
+}
+
 .buttonNav {
   text-align: right;
+  bottom: 0;
 }
 
 .navbutton,
@@ -50,11 +66,6 @@
   opacity: 0.8;
   border: none;
   min-width: 100px;
-}
-
-
-.buttonNav {
-  text-align: right;
 }
 
 .resolveBtn,
@@ -93,4 +104,14 @@
     cursor: pointer;
 }
 
+.navSmallBtn
+{
+  color: var(--primary);
+  float: left;
+  font-size: 14px;
+  display: inline-block;
+  margin-top: 12px;
+  margin-right: 25px;
+  cursor: pointer;
+}
 
