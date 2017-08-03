@@ -115,3 +115,7 @@
   cursor: pointer;
 }
 
+#toggleBtn
+{
+  visibility: hidden;
+}

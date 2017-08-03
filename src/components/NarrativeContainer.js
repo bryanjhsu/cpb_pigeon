@@ -25,6 +25,10 @@ class NarrativeContainer extends React.Component {
     key('up', this.restartEvent);
     key('left', this.prevMessageEvent);
     key('down', this.allMessagesEvent);
+    key('down', this.allMessagesEvent);
+
+
+    key('t', props.hideSidesCallback);
 
    this.updateMessageHighlightedIndex = this.updateMessageHighlightedIndex.bind(this);
   }
@@ -120,7 +124,7 @@ class NarrativeContainer extends React.Component {
             All Scenarios
           </span>
 
-          <span data-tip data-for='toggleTip' className ="navSmallBtn btnHover" onClick={this.props.hideSidesCallback} >
+          <span data-tip data-for='toggleTip' id ="toggleBtn" className ="navSmallBtn btnHover" onClick={this.props.hideSidesCallback} >
             Toggle Sidebars
           </span>
 
